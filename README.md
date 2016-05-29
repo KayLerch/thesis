@@ -1,20 +1,15 @@
 Technische Hochschule Nürnberg
-
 FAKULTÄT ELEKTROTECHNIK FEINWERKTECHNIK
-
 INFORMATIONSTECHNIK EFI
 
 Software Engineering und Informationstechnik
 
-![](media/image001.jpeg){width="1.9in" height="1.9in"}
+![](media/image001.jpg)
 
-**Masterarbeit**
-
-**Generisches Konzept und Implementierung einer **
-
-**asynchronen Workflow-Engine unter Anwendung von **
-
-**TIBCO BusinessWorks und Amazon Webservices**
+*Masterarbeit*
+> Generisches Konzept und Implementierung einer
+> asynchronen Workflow-Engine unter Anwendung von
+> TIBCO BusinessWorks und Amazon Webservices
 
   Autor            :   **Kay Lerch**
   ---------------- --- ---------------------------
@@ -23,7 +18,7 @@ Software Engineering und Informationstechnik
   Zweitgutachter   :   Prof. Dr. Hans-Georg Hopf
   Abgabetermin     :   02.02.2016 (WS 15/16)
 
-Prüfungsrechtliche Erklärung {#prüfungsrechtliche-erklärung .ListParagraph}
+Prüfungsrechtliche Erklärung
 ============================
 
 Ich,
@@ -41,7 +36,7 @@ Potsdam, den 02.02.2016
 
 Kay Lerch
 
-<span id="_Ref491742389" class="anchor"><span id="_Toc442172954" class="anchor"></span></span>Kurzfassung / Abstract {#kurzfassung-abstract .ListParagraph}
+<span id="_Ref491742389" class="anchor"><span id="_Toc442172954" class="anchor"></span></span>Kurzfassung / Abstract
 ====================================================================================================================
 
 Die vorliegende Masterarbeit befasst sich mit den Herausforderungen der
@@ -67,400 +62,216 @@ diesen Gründen – so schlussfolgert der Autor – wird die entworfene
 *Workflow-Engine* die digitale Transformation in Unternehmen
 unterstützen.
 
-Inhaltsverzeichnis {#inhaltsverzeichnis .ListParagraph}
+Inhaltsverzeichnis
 ==================
 
-Prüfungsrechtliche Erklärung II
-
-Kurzfassung / Abstract III
-
-Inhaltsverzeichnis IV
-
-Abbildungsverzeichnis VIII
-
-Tabellenverzeichnis IX
-
-Abkürzungsverzeichnis X
-
-Vorwort XIII
-
-1 Einleitung 1
-
-1.1 Herausforderungen 3
-
-1.2 Zielformulierung 4
-
-1.3 Inhalte und Struktur der Arbeit 4
-
-2 Klassische Integration in heterogenen IT-Landschaften 6
-
-2.1 Applikation im Fokus – die klassische EAI 7
-
-2.1.1 Messaging-Systeme 9
-
-2.1.2 Message Oriented Middleware 10
-
-2.1.3 Message Bus 12
-
-2.2 Service im Fokus – Entwicklung der SOA 14
-
-2.2.1 Konzept 14
-
-2.2.2 Enterprise Service Bus 15
-
-2.2.3 Resümee 16
-
-2.3 Geschäftsprozesse im Fokus – Ausbildung des BPM 17
-
-2.3.1 Business Process Management System 17
-
-2.3.2 Abgrenzung zur SOA und dem ESB 19
-
-2.3.3 Resümee 20
-
-2.4 Workflow im Fokus – Automatisierung in der Workflow-Engine 21
-
-2.4.1 Abgrenzung Workflow-Management und BPM 21
-
-2.4.2 Referenz-Modell 22
-
-2.5 Totale (Referenz-)Architektur 23
-
-3 Integration für moderne IT-Landschaften 27
-
-3.1 Agilisierung – die Softwarebranche denkt um 27
-
-3.2 Modularisierung – Microservices übernehmen agile Wertekonzepte 28
-
-3.2.1 Domain Driven Design 29
-
-3.2.2 Operative Freiräume 31
-
-3.2.3 Herausforderungen für Integration 32
-
-3.3 Pragmatisierung –APIs, Messaging und sonst nichts? 32
-
-3.3.1 Synchrone Kommunikation über RESTful Webservices 33
-
-3.3.2 Asynchrone Kommunikation über Messages 33
-
-3.3.3 Herausforderungen für Integrationslösungen 34
-
-3.4 Virtualisierung – die Abkehr der Applikation vom System 35
-
-3.4.1 Cloud-Services 35
-
-3.4.2 Software-Container 36
-
-3.4.3 Herausforderungen für Integrationslösungen 37
-
-3.5 Mobilisierung – Vielfältigkeit zu integrierender Endgeräte 38
-
-4 Integration im Wandel 39
-
-4.1 Sinneswandel 39
-
-4.2 Strukturwandel 40
-
-4.3 Bewältigungsstrategien 41
-
-4.3.1 Der bimodale Ansatz für Integration 41
-
-4.3.2 Self-Service Integration 43
-
-4.3.3 Hybrid Integration Platform 44
-
-4.3.4 Self-Service Integration Portal 45
-
-5 Integrationslösung mit TIBCO BusinessWorks 46
-
-5.1 Anforderungsanalyse und Entwurf 46
-
-5.1.1 Geschäftsprozess am Beispiel 46
-
-5.1.2 Datenflüsse am Beispiel 47
-
-5.1.3 Systemarchitektur am Beispiel 48
-
-5.2 Grundlagen zur TIBCO Produktpalette 49
-
-5.2.1 Message Service 49
-
-5.2.2 ActiveMatrix 49
-
-5.2.3 Administratives Werkzeug 51
-
-5.3 Ausbaustufe 1: Modularisierung nach Fachlichkeit 52
-
-5.3.1 Modularisierungskriterium 52
-
-5.3.2 Komponentendesign 54
-
-5.3.3 Sicherstellung einer garantierten Nachrichtenverarbeitung 56
-
-5.3.4 Data-Journal 60
-
-5.3.5 Zusammenfassung 61
-
-5.4 Ausbaustufe 2: Modularisierung nach Funktion 62
-
-5.4.1 Geteilte Ressourcen 62
-
-5.4.2 Broker 63
-
-5.4.3 Bessere Skalierung 64
-
-5.4.4 Zusammenfassung 66
-
-5.5 Ausbaustufe 3: Generischer Mittler 66
-
-5.5.1 Prozesskoordination 67
-
-5.5.2 Referenzmodell zum Datenfluss 69
-
-5.5.3 Inhalts- und kontextgesteuerte Nachrichtenvermittlung 70
-
-5.5.4 Metadatenspeicher und Data-Journal 71
-
-5.5.5 Der Mediator 73
-
-5.5.6 Zusammenfassung 75
-
-5.6 Bewertung und Ausblick 75
-
-6 Workflow-Engine mit Amazon SWF 77
-
-6.1 Beschreibung und Einsatz 77
-
-6.2 Komponenten 78
-
-6.3 Funktionsweise 81
-
-6.4 Flow Framework 83
-
-6.4.1 Workflow Worker 84
-
-6.4.2 Activity Worker 85
-
-6.4.3 Workflow Starter 86
-
-7 Hybride Integrationsplattform mit BusinessWorks und SWF 87
-
-7.1 Der Anwendungsfall 88
-
-7.2 Migration der Mediator-Komponenten 88
-
-7.2.1 Inbound Transport Worker der Broker 89
-
-7.2.2 Journale 90
-
-7.2.3 Service Proxy Worker der Broker 91
-
-7.2.4 Outbound Transport Worker der Broker 91
-
-7.2.5 Service Worker der FApps 92
-
-7.2.6 Mediator 93
-
-7.2.7 Zusammenfassung 94
-
-7.3 Integration im AWS-Ökosystem 95
-
-7.4 Vendor Lock-in 97
-
-7.5 Self-Service-Integration 97
-
-7.6 SWF und Microservices 100
-
-8 Schluss 101
-
-8.1 Bewertung und Benchmark 101
-
-8.2 Fazit und Ausblick 103
-
-Anhänge XIV
+Prüfungsrechtliche Erklärung
+Kurzfassung / Abstract
+Inhaltsverzeichnis
+Abbildungsverzeichnis
+Tabellenverzeichnis
+Abkürzungsverzeichnis 
+Vorwort
+
+1 Einleitung
+1.1 Herausforderungen
+1.2 Zielformulierung
+1.3 Inhalte und Struktur der Arbeit
+
+2 Klassische Integration in heterogenen IT-Landschaften
+2.1 Applikation im Fokus – die klassische EAI
+2.1.1 Messaging-Systeme
+2.1.2 Message Oriented Middleware
+2.1.3 Message Bus
+2.2 Service im Fokus – Entwicklung der SOA
+2.2.1 Konzept
+2.2.2 Enterprise Service Bus
+2.2.3 Resümee
+2.3 Geschäftsprozesse im Fokus – Ausbildung des BPM
+2.3.1 Business Process Management System
+2.3.2 Abgrenzung zur SOA und dem ESB
+2.3.3 Resümee
+2.4 Workflow im Fokus – Automatisierung in der Workflow-Engine
+2.4.1 Abgrenzung Workflow-Management und BPM
+2.4.2 Referenz-Modell
+2.5 Totale (Referenz-)Architektur
+
+3 Integration für moderne IT-Landschaften
+3.1 Agilisierung – die Softwarebranche denkt um
+3.2 Modularisierung – Microservices übernehmen agile Wertekonzepte
+3.2.1 Domain Driven Design
+3.2.2 Operative Freiräume
+3.2.3 Herausforderungen für Integration
+3.3 Pragmatisierung –APIs, Messaging und sonst nichts?
+3.3.1 Synchrone Kommunikation über RESTful Webservices
+3.3.2 Asynchrone Kommunikation über Messages
+3.3.3 Herausforderungen für Integrationslösungen
+3.4 Virtualisierung – die Abkehr der Applikation vom System
+3.4.1 Cloud-Services
+3.4.2 Software-Container
+3.4.3 Herausforderungen für Integrationslösungen
+3.5 Mobilisierung – Vielfältigkeit zu integrierender Endgeräte
+
+4 Integration im Wandel
+4.1 Sinneswandel
+4.2 Strukturwandel
+4.3 Bewältigungsstrategien
+4.3.1 Der bimodale Ansatz für Integration
+4.3.2 Self-Service Integration
+4.3.3 Hybrid Integration Platform
+4.3.4 Self-Service Integration Portal
+5 Integrationslösung mit TIBCO BusinessWorks
+5.1 Anforderungsanalyse und Entwurf
+5.1.1 Geschäftsprozess am Beispiel
+5.1.2 Datenflüsse am Beispiel
+5.1.3 Systemarchitektur am Beispiel
+5.2 Grundlagen zur TIBCO Produktpalette
+5.2.1 Message Service
+5.2.2 ActiveMatrix
+5.2.3 Administratives Werkzeug
+5.3 Ausbaustufe 1: Modularisierung nach Fachlichkeit
+5.3.1 Modularisierungskriterium
+5.3.2 Komponentendesign
+5.3.3 Sicherstellung einer garantierten Nachrichtenverarbeitung
+5.3.4 Data-Journal
+5.3.5 Zusammenfassung
+5.4 Ausbaustufe 2: Modularisierung nach Funktion
+5.4.1 Geteilte Ressourcen
+5.4.2 Broker
+5.4.3 Bessere Skalierung
+5.4.4 Zusammenfassung
+5.5 Ausbaustufe 3: Generischer Mittler
+5.5.1 Prozesskoordination
+5.5.2 Referenzmodell zum Datenfluss
+5.5.3 Inhalts- und kontextgesteuerte Nachrichtenvermittlung
+5.5.4 Metadatenspeicher und Data-Journal
+5.5.5 Der Mediator
+5.5.6 Zusammenfassung
+5.6 Bewertung und Ausblick 
+
+6 Workflow-Engine mit Amazon SWF
+6.1 Beschreibung und Einsatz
+6.2 Komponenten
+6.3 Funktionsweise
+6.4 Flow Framework
+6.4.1 Workflow Worker
+6.4.2 Activity Worker
+6.4.3 Workflow Starter
+
+7 Hybride Integrationsplattform mit BusinessWorks und SWF
+7.1 Der Anwendungsfall
+7.2 Migration der Mediator-Komponenten
+7.2.1 Inbound Transport Worker der Broker
+7.2.2 Journale
+7.2.3 Service Proxy Worker der Broker
+7.2.4 Outbound Transport Worker der Broker
+7.2.5 Service Worker der FApps
+7.2.6 Mediator
+7.2.7 Zusammenfassung 
+7.3 Integration im AWS-Ökosystem
+7.4 Vendor Lock-in
+7.5 Self-Service-Integration
+7.6 SWF und Microservices
+
+8 Schluss
+8.1 Bewertung und Benchmark
+8.2 Fazit und Ausblick
 
 Anhang 1: Prozessmodell für Leistungsbuchung (mit und ohne Entitäten)
-XIV
-
-Anhang 2: *Process Pattern Mapping* für Leistungsbuchung XV
-
-Anhang 3: Data-Journal in Microstrategy XVI
-
-Anhang 4: FApp-Architektur für Weiterleitung offene Posten XVII
-
+Anhang 2: *Process Pattern Mapping* für Leistungsbuchung
+Anhang 3: Data-Journal in Microstrategy 
+Anhang 4: FApp-Architektur für Weiterleitung offene Posten 
 Anhang 5: Referenz-Architektur für entitätsbezogenen Datenaustausch \#1
-XVIII
-
 Anhang 6: Referenz-Architektur für entitätsbezogenen Datenaustausch \#2
-XIX
-
-Anhang 7: Generischer Nachrichtenfluss im ESB mit Beispiel XX
-
-Anhang 8: Generischer Nachrichtenfluss über ESB-Komponenten XXI
-
-Anhang 9: Generisches Design eines ESB Brokers mit Beispiel XXII
-
-Anhang 10: Generisches Design einer ESB FApp mit Beispiel XXIII
-
-Anhang 11: Nachrichten mit anreicherndem Kontext im gen. Datenfluss XXIV
-
-Anhang 12: Referenz-Architektur mit generischem Mediator XXV
-
-Anhang 13: AWS Flow Framework Implementierung mit SWF Interaktion XXVI
-
-Anhang 14: Vertragsweiterleitung bei Leistungsbuchung durch ESB XXVII
-
+Anhang 7: Generischer Nachrichtenfluss im ESB mit Beispiel 
+Anhang 8: Generischer Nachrichtenfluss über ESB-Komponenten 
+Anhang 9: Generisches Design eines ESB Brokers mit Beispiel 
+Anhang 10: Generisches Design einer ESB FApp mit Beispiel 
+Anhang 11: Nachrichten mit anreicherndem Kontext im gen. Datenfluss 
+Anhang 12: Referenz-Architektur mit generischem Mediator 
+Anhang 13: AWS Flow Framework Implementierung mit SWF Interaktion 
+Anhang 14: Vertragsweiterleitung bei Leistungsbuchung durch ESB 
 Anhang 15: Hybride Integrationslösung für Vertragsweiterleitung mit SWF
-XXVIII
+Anhang 16: SWF im AWS-Ökosystem 
+Anhang 17: SWF im AWS-Ökosystem (Exit-Strategie) 
+Anhang 18: SWF-Workflow Leistungsverbuchung mit Delegierung 
+Anhang 19: CD-ROM 
+Literaturverzeichnis 
 
-Anhang 16: SWF im AWS-Ökosystem XXIX
-
-Anhang 17: SWF im AWS-Ökosystem (Exit-Strategie) XXX
-
-Anhang 18: SWF-Workflow Leistungsverbuchung mit Delegierung XXXI
-
-Anhang 19: CD-ROM XXXII
-
-Literaturverzeichnis XXXIII
-
-Abbildungsverzeichnis {#abbildungsverzeichnis .ListParagraph}
+Abbildungsverzeichnis
 =====================
 
 Abbildung 1: Enterprise Integration Patterns (Hohpe, et al., 2003, 2015)
-11
-
-Abbildung 2: Chaining Transformations (Hohpe, et al., 2004 p. 89) 12
-
-Abbildung 3: Workflow vs. Prozess (Müller, 2005 p. 216 (Kindle)) 21
-
+Abbildung 2: Chaining Transformations (Hohpe, et al., 2004 p. 89)
+Abbildung 3: Workflow vs. Prozess (Müller, 2005 p. 216 (Kindle))
 Abbildung 4: Workflow Reference-Model nach (Hollingsworth, 1995 p. 20)
-22
-
-Abbildung 5: Lifecycle eines Workflows (Hollingsworth, 1995 p. 23) 23
-
+Abbildung 5: Lifecycle eines Workflows (Hollingsworth, 1995 p. 23)
 Abbildung 6: Lifecycle einer Aktivität im Workflow (Hollingsworth, 1995
-p. 24) 23
-
+p. 24)
 Abbildung 7: Kombinierte Integrationsstrategien nach (Brown, 2009 p. 35)
-24
-
-Abbildung 8: Total Architecture nach (Brown, 2011 p. 10) 25
-
-Abbildung 9: Geschichtete Architektur nach (Evans, 2003 p. 68) 29
-
-Abbildung 10: Bounded Contexts (Martincevic, 2015) 30
-
-Abbildung 11: Microservice-Stacks nach Bounded Contexts (Allen, 2013) 31
-
-Abbildung 12: Context Map im DDD (Martincevic, 2015) 32
-
-Abbildung 13: „Managed“-Grad eines Cloudportfolios (Thomas, 2015) 36
-
+Abbildung 8: Total Architecture nach (Brown, 2011 p. 10)
+Abbildung 9: Geschichtete Architektur nach (Evans, 2003 p. 68)
+Abbildung 10: Bounded Contexts (Martincevic, 2015)
+Abbildung 11: Microservice-Stacks nach Bounded Contexts (Allen, 2013)
+Abbildung 12: Context Map im DDD (Martincevic, 2015)
+Abbildung 13: „Managed“-Grad eines Cloudportfolios (Thomas, 2015)
 Abbildung 14: Building Blocks zur Beherrschung der Datenflüsse in einem
-Digital Business (Axway, 2015) 39
-
+Digital Business (Axway, 2015)
 Abbildung 15: Geschäftsprozess mit Mahnverfahren nach Leistungsbuchung
-46
-
-Abbildung 16: Auszug Business Object Model - Entitätsebene 47
-
+Abbildung 16: Auszug Business Object Model - Entitätsebene
 Abbildung 17: Geschäftsprozess ergänzt um entitätsbezogene Datenflüsse
-47
-
-Abbildung 18: Systemarchitektur mit entitätsbezogenen Datenflüssen 48
-
-Abbildung 19: Grafisches Mapping im TIBCO BusinessStudio 55
-
-Abbildung 20: Prozess zum Empfang offener Posten aus ERP im Designer 55
-
+Abbildung 18: Systemarchitektur mit entitätsbezogenen Datenflüssen
+Abbildung 19: Grafisches Mapping im TIBCO BusinessStudio
+Abbildung 20: Prozess zum Empfang offener Posten aus ERP im Designer
 Abbildung 21: Prozess zum Versand offener Posten nach Salesforce im
-Designer 56
-
-Abbildung 22: Ausbaustufe 1 – entitätsbezogene FApp-Modularisierung 62
-
-Abbildung 23: Skalierung mit BW6 AppSpaces (TIBCO, 2014 p. 8) 65
-
+Designer
+Abbildung 22: Ausbaustufe 1 – entitätsbezogene FApp-Modularisierung
+Abbildung 23: Skalierung mit BW6 AppSpaces (TIBCO, 2014 p. 8)
 Abbildung 24: Ausbaustufe 2 – entitäts- und systembezogene
-Modularisierung 66
-
-Abbildung 25: Elementare Bausteine einer SOA nach (WSO2, 2011 p. 9) 68
-
-Abbildung 26: Lebenszyklus der Metaobjekte im Mediator-Konzept 71
-
+Modularisierung
+Abbildung 25: Elementare Bausteine einer SOA nach (WSO2, 2011 p. 9)
+Abbildung 26: Lebenszyklus der Metaobjekte im Mediator-Konzept
 Abbildung 27: Erweitertes Datenbankschema für Metadatenspeicher im ESB
-72
-
 Abbildung 28: Content-based Matching zwischen Transporten und
-Transaktionen 72
-
-Abbildung 29: Ausbaustufe 3 – Mediator als generischen Mittler 75
-
+Transaktionen
+Abbildung 29: Ausbaustufe 3 – Mediator als generischen Mittler
 Abbildung 30: Komponenten in SWF und Interaktion mit
-Workflow-Teilnehmern 80
-
-Abbildung 31: Salesforce-Broker übernimmt Rolle eines Activity Worker 92
-
-Abbildung 32: SWF Workflow-Choreografie über Domain/Team-Grenzen 98
-
+Workflow-Teilnehmern
+Abbildung 31: Salesforce-Broker übernimmt Rolle eines Activity Worker
+Abbildung 32: SWF Workflow-Choreografie über Domain/Team-Grenzen
 Abbildung 33: SWF-Workflow-Verschachtelung über Verantwortungsbereiche
-98
-
-Abbildung 34: Prozessmodell für Leistungsbuchung mit Entitäten XIV
-
-Abbildung 35: Prozessmodell für Leistungsbuchung ohne Entitäten XIV
-
-Abbildung 36: *Process-Pattern-Matching* für Leistungsbuchung XV
-
-Abbildung 37: Data-Journal Durchsatz-Statistik in Microstrategy XVI
-
-Abbildung 38: FApp-Architektur für Weiterleitung offener Posten XVII
-
+Abbildung 34: Prozessmodell für Leistungsbuchung mit Entitäten
+Abbildung 35: Prozessmodell für Leistungsbuchung ohne Entitäten
+Abbildung 36: *Process-Pattern-Matching* für Leistungsbuchung
+Abbildung 37: Data-Journal Durchsatz-Statistik in Microstrategy
+Abbildung 38: FApp-Architektur für Weiterleitung offener Posten
 Abbildung 39: Referenzarchitektur für entitätsbezogenen Datenaustausch
-\#1 XVIII
-
+\#1
 Abbildung 40: Referenz-Architektur für entitätsbezogenen Datenaustausch
-\#2 XIX
-
-Abbildung 41: Generischer Nachrichtenfluss im ESB XX
-
-Abbildung 42: Generischer Nachrichtenfluss im ESB am Beispiel XX
-
-Abbildung 43: Generischer Datenfluss über ESB-Komponenten XXI
-
-Abbildung 44: Generisches Design eines ESB-Brokers XXII
-
-Abbildung 45: Generisches Design eines ESB-Brokers am Beispiel XXII
-
-Abbildung 46: Generisches Design einer ESB-FApp XXIII
-
-Abbildung 47: Generisches Design einer ESB-FApp am Beispiel XXIII
-
+\#2
+Abbildung 41: Generischer Nachrichtenfluss im ESB
+Abbildung 42: Generischer Nachrichtenfluss im ESB am Beispiel
+Abbildung 43: Generischer Datenfluss über ESB-Komponenten
+Abbildung 44: Generisches Design eines ESB-Brokers
+Abbildung 45: Generisches Design eines ESB-Brokers am Beispiel
+Abbildung 46: Generisches Design einer ESB-FApp
+Abbildung 47: Generisches Design einer ESB-FApp am Beispiel
 Abbildung 48: Nachrichten mit anreicherndem Kontext im gen. Datenfluss
-XXIV
-
-Abbildung 49: Referenz-Architektur mit generischem Mediator XXV
-
+Abbildung 49: Referenz-Architektur mit generischem Mediator
 Abbildung 50: AWS Flow Framework Implementierung mit SWF Interaktion
-XXVI
-
-Abbildung 51: Vertragsweiterleitung bei Leistungsbuchung durch ESB XXVII
-
+Abbildung 51: Vertragsweiterleitung bei Leistungsbuchung durch ESB
 Abbildung 52: Hybride Integrationslösung für Vertragsweiterleitung mit
-SWF XXVIII
+SWF
+Abbildung 53: SWF im AWS-Ökosystem
+Abbildung 54: Denkbare Exit-Strategie für SWF und Anrainer-Produkte
+Abbildung 55: SWF-Workflow Leistungsverbuchung mit Delegierung
 
-Abbildung 53: SWF im AWS-Ökosystem XXIX
-
-Abbildung 54: Denkbare Exit-Strategie für SWF und Anrainer-Produkte XXX
-
-Abbildung 55: SWF-Workflow Leistungsverbuchung mit Delegierung XXXI
-
-Tabellenverzeichnis {#tabellenverzeichnis .ListParagraph}
+Tabellenverzeichnis
 ===================
 
-Tabelle 1: Gegenüberstellung ESB-Mediator-Konzept und SWF 2
+Tabelle 1: Gegenüberstellung ESB-Mediator-Konzept und SWF
 
-Abkürzungsverzeichnis {#abkürzungsverzeichnis .ListParagraph}
+Abkürzungsverzeichnis
 =====================
 
   **AMX**     :   Active Matrix
@@ -549,7 +360,7 @@ Abkürzungsverzeichnis {#abkürzungsverzeichnis .ListParagraph}
   **XSD**     :   XML Schema Definition
   **XSLT**    :   eXtensible Stylesheet Language Transformation
 
-Vorwort {#vorwort .ListParagraph}
+Vorwort
 =======
 
 Diese Arbeit umfasst meine Gedankengänge, Gespräche, Forschungen und
@@ -599,21 +410,21 @@ kontinuierliches Feedback und das entgegengebrachte Engagement bedanken.
 
 *“I think we all realize the consumer has taken control and they’re not
 giving it back, \[…\] So as every new technology comes forward, we have
-to figure out how to integrate it.”*[^1]
+to figure out how to integrate it.”*[1]
 
 So beschreibt Anne Sweeney die neuen Herausforderungen, denen sich
-Unternehmen im Zeitalter des *Digital Business*[^2] stellen. Sie leiten
+Unternehmen im Zeitalter des *Digital Business*[2] stellen. Sie leiten
 sich her aus der Entstehung neuer Absatzwege für Produkte und
 Dienstleistungen über mobile Endgeräte und der Zunahme an Transparenz
 und Flexibilität über die soziale Vernetzung für den Endverbraucher. Die
 Adaption derartiger Technologien und Marktpotentiale vollzieht sich in
 einem Prozess der digitalen Transformation von Unternehmen und mündet
-zuweilen in disruptive Innovationen[^3] und Geschäftsmodelle, in denen
-Unternehmen der *Old Economy*[^4] und des klassischen
+zuweilen in disruptive Innovationen[3] und Geschäftsmodelle, in denen
+Unternehmen der *Old Economy*[4] und des klassischen
 *E-Commerce*-Geschäfts das Nachsehen haben . So revolutionierte Amazon
 den Einzelhandel, Uber das Personentransportgewerbe und Reiseportale wie
 Expedia oder Tripadvisor die Tourismusbranche. Die auflebende Kultur der
-Startup-Unternehmen am Beispiel der Finanzbranche (*FinTech*[^5]) deutet
+Startup-Unternehmen am Beispiel der Finanzbranche (*FinTech*[5]) deutet
 auf ein weiteres Wachstum des *Digital Business*‘ hin . Mehr noch
 begünstigt die zunehmende Zahl von Mitwirkenden am digitalen Ökosystem
 die geschäftsmäßige Vernetzung (B2B-Kommunikation) und das Angebot
@@ -641,7 +452,7 @@ den Ansatz der Konnektivität über APIs verfolgt .
 
 Verantwortlich sind vor allem die hohe Komplexität und die besonderen
 Anforderungen an Qualität und Stabilität, welche die
-*Backend*-Systeme[^6] der Unternehmen (Domäne der *„process efficiency“;
+*Backend*-Systeme[6] der Unternehmen (Domäne der *„process efficiency“;
 Vgl.* ) nicht am Innovationsprozess teilhaben ließen oder immer noch
 lassen. Nichtsdestotrotz sind es diese Systeme, die Geschäftsprozesse
 treiben und welche historisch bedingt mit der Wertschöpfungskette des
@@ -654,14 +465,14 @@ gefährden, fällt der klassischen Anwendungs- und Systemintegration eine
 neue wichtige Rolle zu . So erzielt sich der Unternehmenserfolg
 besonders aus dem harmonischen Zusammenspiel dieser beiden Domänen,
 dessen Divergenz als das *„process efficiency and customer experience
-dilemma“*[^7] bezeichnet. IBM-Vorstand Louis V. Gerstner Jr. wies auf
+dilemma“*[7] bezeichnet. IBM-Vorstand Louis V. Gerstner Jr. wies auf
 dieses Dilemma bereits im Jahr 1999 hin:
 
 *„The Internet is ultimately about innovation and integration. \[…\] But
 you don't get the innovation unless you integrate Web technology into
 the processes by which you run your business \[…\] The true revolution
 coming from the Web is when the Web can get integrated with business
-processes.”*[^8]
+processes.”*[8]
 
 Damit liegt die Vermutung nahe, dass Probleme durch
 Integrationsstrategien und -produkte bis heute nicht adäquat gelöst
@@ -748,7 +559,7 @@ Business* und aktuellen Technologietrends wie *Microservices*,
 kann.
 
 Die Arbeit schließt mit der Möglichkeit zur Anwendung cloudbasierte
-Integrationsprodukte (*iPaaS*, *iSaaS*[^9]) und deren Stellenwert in der
+Integrationsprodukte (*iPaaS*, *iSaaS*[9]) und deren Stellenwert in der
 digitalen Transformation eines Unternehmens.
 
 Die Arbeit soll schlussendlich belegen, dass die zu erstellende
@@ -855,7 +666,7 @@ kein erstrebenswertes Ziel. Sie limitiert die Innovationskraft eines
 Unternehmens auf bestimmte Technologiezweige und löst nur einige der
 oben erwähnten Herausforderungen.
 
-Vielmehr fokussieren sich Konsortien wie die OASIS[^10] oder W3C[^11]
+Vielmehr fokussieren sich Konsortien wie die OASIS[10] oder W3C[11]
 auf Standardisierungen über einheitliche Datenformate (XML, JSON u.a.),
 Transportprotokolle (bspw. die WS-Protokollfamilie) sowie die
 Ausarbeitung von Referenzarchitekturen (etwa der SOA), um der
@@ -887,7 +698,7 @@ die mitunter zu Dateninkonsistenzen zwischen den Anwendungen führen
 kann. Verbreitet sind diese Ansätze in *Mainframe*-Systemen, die über
 COBOL das Dateisystem beschreiben und so Datenabgänge realisieren.
 Überlebt hat diese Methode auch in neueren Systemen – etwa beim
-Austausch von XML-Dateien über FTP.[^12]
+Austausch von XML-Dateien über FTP.[12]
 
 **Geteilte Datenbank**: Um den Austausch von Daten grundsätzlich zu
 vermeiden, entstand der Ansatz zur Verwendung einer gemeinsamen
@@ -908,7 +719,7 @@ Applikation eine Ausführungsmethode von außen aufrufbar zu machen, indem
 die entsprechende Ressource als *Remote Procedure* oder im
 objektorientierten Kontext als *Remote Method* deklariert wird. Der
 Aufruf dieser Ressource von einem anderen Programm wird dann als RPC
-oder in der Programmiersprache Java als RMI[^13] bezeichnet. Erstmalig
+oder in der Programmiersprache Java als RMI[13] bezeichnet. Erstmalig
 ist nicht nur der Datenaustausch möglich, sondern ein Zugang zu
 entfernten Funktionen eines anderen Programmes möglich. Der Vorteil
 ergibt sich aus dem synchronen Aufruf, der dem Aufrufer unverzüglich mit
@@ -919,7 +730,7 @@ verhält sich die Signatur der Programmschnittstelle. Der Aufrufer hält
 die Schnittstellendefinition lokal vor und hat diese bei serverseitiger
 Änderung zu synchronisieren. Diese Hürde wurde mit den heute gängigen
 *Webservices* überwunden, da die Schnittstellendefinition in
-deklarativer Form (WSDL[^14]) auf der Serverseite gehalten wird.
+deklarativer Form (WSDL[14]) auf der Serverseite gehalten wird.
 
 **Messaging**: Asynchrone Datenübermittlung bewies sich anhand des
 Dateitransfers als effektivste Form zur Wahrung einer losen Kopplung
@@ -940,29 +751,29 @@ Ereignisse (*Events*) auszudrücken. Sie bilden die ideale Voraussetzung
 für ein ereignisgesteuertes *Messaging* (Vgl. ). Prinzipiell lassen sich
 über den Body der Nachricht – unter Berücksichtigung von Limitierungen
 im Hinblick auf die Größe einer Nachricht – Daten in jedem Format
-übertragen. Durchgesetzt haben sich Datenstrukturen im XML-Format[^15] .
+übertragen. Durchgesetzt haben sich Datenstrukturen im XML-Format[15] .
 
 Der Übertragungskanal ist eine weitere Entwicklung gegenüber dem
 Dateitransfer, denn er repräsentiert eine adressierbare Ressource, die
 eingehende Nachrichten nicht nur persistiert, sondern für den
 Konsumenten auch organisiert – zum Beispiel die Reihenfolge und
-Priorisierung der Ausgabe[^16]. Am verbreitetsten ist das Konzept der
-*Queues*[^17], die von einem *Messaging*-System verwaltet werden und
-über ein Anwendungsprotokoll[^18] oder bequemer noch über eine API[^19]
+Priorisierung der Ausgabe[16]. Am verbreitetsten ist das Konzept der
+*Queues*[17], die von einem *Messaging*-System verwaltet werden und
+über ein Anwendungsprotokoll[18] oder bequemer noch über eine API[19]
 mit einem sprechenden Bezeichner von einer Applikation adressierbar
 sind.
 
 *Messaging*-Dienste arbeiten nach dem *Publish-Subscribe*-Prinzip.
 Daten- oder *Event*-Produzenten (*Publisher*) senden Nachrichten an eine
 *Queue*, während Konsumenten (*Subscriber*) deren Empfang über ein
-Abonnement auf die *Queue* initiieren können[^20]. Eine direkte
+Abonnement auf die *Queue* initiieren können[20]. Eine direkte
 Verbindung zwischen beiden Parteien gibt es damit nicht. Dieser Umstand
 führt zu der erwünschten losen Kopplung zweier oder mehr Applikationen.
 
 Konkurrierende Zugriffe mehrerer Anwendungen auf eine *Queue* sind
 möglich, versorgen aber nach dem „*First Come First Serve“*-Prinzip nur
 den ersten Konsumenten. Ist eine Verteilung einer Nachricht auf mehrere
-Konsumenten erwünscht, eignet sich das *Topic*[^21]. Es wird ebenso
+Konsumenten erwünscht, eignet sich das *Topic*[21]. Es wird ebenso
 durch einen *Messaging*-Dienst verwaltet und dient lediglich dem
 Publisher zur Entsendung einer Nachricht. Die *Subscriber* abonnieren
 sich auf eine eigene (nicht mit anderen geteilte) *Queue*, die
@@ -973,7 +784,7 @@ und Konsumenten, sodass Applikationen sich ausschließlich nur noch an
 Ressourcen (*Queues*, *Topics*) dieses Dienstes koppeln, nicht jedoch
 weiter untereinander. Aufgrund der ausfallkritischen Rolle dieses
 Dienstes gingen Unternehmen dazu über ihn in eigene physikalische oder
-logische Einheiten[^22] auszulagern, um entsprechend besser skalieren zu
+logische Einheiten[22] auszulagern, um entsprechend besser skalieren zu
 können und lose Kopplung von den angebundenen Applikationen auch
 konsequent durchzusetzen. Diese Entscheidung bildete in der
 System-Architektur einen neuen *Layer* aus, der mit dem Begriff der
@@ -992,7 +803,7 @@ dieser Dienste, indem sie nicht weiter nur die Infrastruktur und
 Endpunkte für Nachrichtenübermittlungen bereitstellten, sondern fortan
 auch mit Logik implementiert werden konnten. Die Route einer Nachricht
 kann sich durch Anwendung von Filtern und Regelwerken, die auf den
-Inhalt (*Body*)[^23] und den Metadaten (*Header*)[^24] einer Nachricht
+Inhalt (*Body*)[23] und den Metadaten (*Header*)[24] einer Nachricht
 angewendet werden, innerhalb der MOM ändern. Die Verkettung solcher
 Weichenstellungen kann bereits komplexe Logik abbilden und erfüllen das,
 was in als *Message-Router* bezeichnet wird.
@@ -1009,14 +820,14 @@ eine Datenbank – können mit den APIs oder Protokollen des
 *Message-Routers* arbeiten, sich auf asynchrone Interaktionsmuster oder
 die Schnittstellenschemata der MOM einlassen. Adapter sind Konnektoren
 für Applikationen und Systeme, die über vom MOM bereitgestellte
-SDKs[^25] entwickelt werden können und als *Gateway* zum
+SDKs[25] entwickelt werden können und als *Gateway* zum
 *Messaging*-Dienst fungieren. Mit einem Angebot von
-Standard-Adaptern[^26] für verbreitete Systeme und den
+Standard-Adaptern[26] für verbreitete Systeme und den
 Erweiterungsmöglichkeiten über SDKs nennen sich entsprechende Produkte
 *Message-Broker* , denn sie überwinden die Kommunikationshürde mit
 proprietären System- und Anwendungsschnittstellen im wörtlichen Sinn.
 
-![](media/image004.png){width="5.9in" height="3.55in"}
+![](media/image004.png)
 
 <span id="_Ref442108811" class="anchor"><span id="_Toc442172872"
 class="anchor"></span></span>Abbildung : Enterprise Integration Patterns
@@ -1024,7 +835,7 @@ class="anchor"></span></span>Abbildung : Enterprise Integration Patterns
 Die Gesamtheit der Entwurfsmuster und -Werkzeuge für MOMs behandelt das
 Buch unter Einführung eigener Notation und eigenem Vokabular. Die
 *Enterprise Integration Patterns* gelten als akzeptierter Standard, die
-am konsequentesten durch das Tool *Apache Camel*[^27] angenommen und
+am konsequentesten durch das Tool *Apache Camel*[27] angenommen und
 über dessen Framework implementiert werden können.
 
 ### <span id="_Ref441593940" class="anchor"><span id="_Toc442172968" class="anchor"></span></span>Message Bus
@@ -1045,10 +856,10 @@ Adressänderung repräsentierenden Kommandos – verschieden sein. Wird es
 der konsumierenden Applikation aufgetragen die Übersetzung der Daten
 (*Content*) und Interpretation des Kommandos (*Context*) in die eigene
 Semantik und Syntax zu vollziehen, ergibt sich eine neue Form der
-Kopplung beider Systeme auf dem *Layer*[^28] der Datenstrukturen (siehe
+Kopplung beider Systeme auf dem *Layer*[28] der Datenstrukturen (siehe
 Grafik).
 
-![](media/image005.png){width="4.033333333333333in" height="1.6in"}
+![](media/image005.png)
 
 <span id="_Toc442172873" class="anchor"></span>Abbildung : Chaining
 Transformations
@@ -1057,14 +868,14 @@ Datenstrukturen gerade bei kommerziellen Anwendungsprodukten sind schwer
 abänderbar, sodass sich Transformationen zwischen Systemen nicht
 vermeiden lassen. Die Anzahl der Abhängigkeiten kann jedoch durch
 Etablierung eines kanonischen Datenmodells (CDM) verringert werden.
-Dieses Modell[^29] stellt eine anwendungsübergreifende Übereinkunft für
+Dieses Modell[29] stellt eine anwendungsübergreifende Übereinkunft für
 Geschäftsentitäten und -objekte dar. Anwendungen müssen somit nur noch
-Übersetzungen[^30] (*Mappings*) ihrer Datenmodelle in die kanonischen
+Übersetzungen[30] (*Mappings*) ihrer Datenmodelle in die kanonischen
 Formen (und zurück) ausführen.
 
 Ein Message-Bus vereint das Konzept der kanonischen Datenmodelle mit den
 Funktionen eines Message Brokers. Er stellt zudem für dedizierte
-Anwendungsfälle präparierte Schnittstellen[^31] und Kommandos[^32]
+Anwendungsfälle präparierte Schnittstellen[31] und Kommandos[32]
 bereit, die eine abstraktere, weniger technische Möglichkeit der
 Anbindung an geschäftsorientierten Schnittstellen ermöglichen. (Vgl. ).
 Erstmalig wird beim Bussystem auch die Verwendung einer dedizierten
@@ -1075,8 +886,8 @@ Es resultiert ein Architekturmuster, welches als *Hub & Spoke*
 bezeichnet wird . Durch die Zentralität einer geteilten Anwendung
 (*Hub*) ergibt sich der Vorteil, dass die Anzahl der
 systemübergreifenden Schnittstellen nur noch der Anzahl angebundener
-Systeme (*Spoke*) ist[^33]. Das löst das von Gartner als „*integration
-spaghetti*“[^34] bezeichnete Netz an Schnittstellen im Netzwerk und
+Systeme (*Spoke*) ist[33]. Das löst das von Gartner als „*integration
+spaghetti*“[34] bezeichnete Netz an Schnittstellen im Netzwerk und
 dient dem Abbau von Komplexität und leichterer Wartung. Herausfordernd
 ist damit umso mehr die Skalierung des Message-Busses, da er die für
 alle Anwendungen kritische Komponente wird und zum Flaschenhals der
@@ -1107,7 +918,7 @@ Dienstleistungen und Prozessen ausgerichteten Fachdomänen zu schaffen,
 um so die Angleichung von Technik und der fachlichen Organisation eines
 Unternehmens zu erwirken (*Business-IT-Alignment*). Die Aktivitäten von
 Geschäftsprozessen werden als anwendbarer *Service* in einem
-Portfolio[^35] (*Service repository*) festgehalten, wobei die
+Portfolio[35] (*Service repository*) festgehalten, wobei die
 Implementierung dieser *Services* durch eine Anwendung
 (*Service-Provider*) für den Konsumenten verborgen bleibt. Werkzeuge
 eines SOA-basierten Werkzeugs pflegen dieses Portfolio, ermöglichen die
@@ -1161,7 +972,7 @@ Geschäftsaktivitäten (*Services*), sondern auch (Teil-)Geschäftsprozesse
 zu neuen Ausführungsketten kombiniert werden können.
 *Middleware*-Systeme, die diesen Ansprüchen gerecht werden, sind unter
 dem Begriff des *Enterprise Services Bus* (ESB) bekannt. Sie ergänzen
-die Funktionalitäten einer MOM oder ersetzen sie gar[^36]. Da
+die Funktionalitäten einer MOM oder ersetzen sie gar[36]. Da
 *Service*-Orchestrierungen zustandsbehaftet sein können, arbeitet ein
 ESB mit Persistenztechnologien, die Zustände einer Prozessausführung bei
 Unterbrechung oder dem Pausieren in eine Datenbank oder einem
@@ -1212,12 +1023,12 @@ Die Etablierung einer zentralen Prozesssteuerung durch einen ESB sorgte
 im Mindesten für eine Entlastung der Geschäftsanwendungen. Durch die
 Propagation von Webservices als bevorzugte Schnittstellentechnologie für
 *Services* entfällt für Applikationen der Integrationsaufwand und die
-Anstrengung von den in der MOM eingeführten Adapter[^37]. Im Weiteren
+Anstrengung von den in der MOM eingeführten Adapter[37]. Im Weiteren
 sorgte die Einführung von SLAs für Sensibilisierung auf
 Software-Qualität. Das Streben nach Wiederverwendung in der SOA führte
 zu einer intensiveren Auseinandersetzung mit effizienter
 Software-Modularisierung. Der in diesen Disziplinen einhergehende Trend
-nach loserer Kopplung zwischen, und stärkerer Kohäsion[^38] in den
+nach loserer Kopplung zwischen, und stärkerer Kohäsion[38] in den
 Modulen, bereiteten das Verständnis und den Weg für *Microservices*.
 
 Geschäftsprozesse im Fokus – Ausbildung des BPM
@@ -1231,9 +1042,9 @@ werden durch Notationen wie einer Ereignis-Prozess-Kette (EPK) oder der
 Aktivitäten des Prozesses können automatisiert von Systemen übernommen
 werden, manuell mit Softwareunterstützung erledigt oder gänzlich ohne
 Einsatz von Software bewältigt werden. Daraus ergeben sich nicht selten
-Medienbrüche[^39]. Die vollständige Prozessautomatisierung ist durch den
-notwendigen Einbezug von Personen[^40] oder mangelnder technischer
-Möglichkeiten[^41] nicht immer erreichbar, sodass es Managementsysteme
+Medienbrüche[39]. Die vollständige Prozessautomatisierung ist durch den
+notwendigen Einbezug von Personen[40] oder mangelnder technischer
+Möglichkeiten[41] nicht immer erreichbar, sodass es Managementsysteme
 bedurfte, die menschliche Interaktionen berücksichtigen können und die
 Lücke zwischen der fachlichen Prozessbeschreibung und einer
 kontrollierten und technischen Prozessausführung schließen. In diesem
@@ -1250,7 +1061,7 @@ einwirkenden Ereignissen (Signalen) aufspalten und wieder zusammenführen
 Geschäftsprozesses zu verrichtende Arbeit durch Mensch oder Maschine.
 Technisch sind sie mit einem Service nebst dahinterstehender
 Implementierung über ein externes oder internes System verbunden. Damit
-wird dieses Modell für eine Prozess*-Engine*[^42] ausführbar.
+wird dieses Modell für eine Prozess*-Engine*[42] ausführbar.
 
 Die Besonderheit von BPM-Systemen ist die Möglichkeit der Einbeziehung
 von Fachexperten (z.B. Prozessverantwortlicher) in die Entwicklung des
@@ -1259,7 +1070,7 @@ praktisch ausgelebt werden:
 
 1)  Der Fachexperte modelliert den Prozess und formuliert
     Geschäftsregeln, die er in den Prozess einbringt, ohne technisches
-    Detailwissen mit einem *Designer* der BPM*-Suite*[^43]. Für jeden
+    Detailwissen mit einem *Designer* der BPM*-Suite*[43]. Für jeden
     Prozessschritt / Aktivität definiert er Ein- und Ausgabeparameter.
     Verknüpft er diese Werte mit Prozessvariablen oder Parametern vor-
     oder nachgelagerter Aktivitäten ist er zusätzlich in der Lage einen
@@ -1282,7 +1093,7 @@ praktisch ausgelebt werden:
     eine grafische Schnittstelle in diesem System vor und verbindet sie
     mit dem *Service*-Endpunkt. Die Integration von Software in eine
     Prozessautomatisierung ist derart üblich, dass die meisten
-    kommerziellen Anbieter spezielle *Features* dafür haben[^44].
+    kommerziellen Anbieter spezielle *Features* dafür haben[44].
 
 3)  Der Integrationsexperte oder versierte Fachkundige verknüpft die
     Aktivität aus dem Prozessmodell mit dem *Service*-Endpunkt des
@@ -1301,7 +1112,7 @@ praktisch ausgelebt werden:
     Ausführung testen und anpassen. Sofern er die technische
     Spezifikation einer Aktivität nicht ändert, kann er den
     Verwendungszweck eines einmal bereitgestellten *Service* durch den
-    Entwickler beliebig wiederverwenden[^45]. Expertenrunden können in
+    Entwickler beliebig wiederverwenden[45]. Expertenrunden können in
     mehreren Iterationen den effizientesten Prozess finden und auch ohne
     technische Experten-Unterstützung einzelne Alternativen testen. Der
     finale Prozess wird an die IT für ein *Deployment* in die ebenfalls
@@ -1328,11 +1139,11 @@ wesentliche Voraussetzung dieses Konzepts. Die im letzten Kapitel
 vorgestellten *Service*-Orchestrierungen in einem ESB können jedoch
 nicht alle Anforderungen für BPM abbilden. Zum einen fehlt die direkte
 Einbeziehung des Menschen (*Human interaction*), zum anderen mangelt es
-an Instrumenten, welche die Komplexität eines Geschäftsprozesses[^46]
+an Instrumenten, welche die Komplexität eines Geschäftsprozesses[46]
 abbilden können. Es gibt ambitionierte Versuche wie den Standard
-WS-BPEL[^47], der Geschäftsprozesse deklarativ im XML-Format beschreibt
+WS-BPEL[47], der Geschäftsprozesse deklarativ im XML-Format beschreibt
 und sie zur Grundlage einer technischen Ausführung über etwas einem BPMS
-bringt. Diese und weitere[^48] technologieneutrale Standards für
+bringt. Diese und weitere[48] technologieneutrale Standards für
 ausführbare Prozessbeschreibungen haben bis heute nur mäßige Akzeptanz
 gefunden und bleiben nur ein teilweise unterstütztes Feature in BPMS,
 ESBs oder ERP-Lösungen (z.B. SAP).
@@ -1380,7 +1191,7 @@ Prozess*-Engine* entfernt den Prozess von seinen Daten . Zu einem
 Geschäftsprozess zugehörige Daten sind nur über die integrierten Systeme
 zu erreichen, sodass die Nutzung von auf ihnen basierenden
 Geschäftsregeln entweder nur beschränkt oder mit dem Aufwand und
-Nachteilen[^49] von Datenreplikationen oder -abrufen aus externen
+Nachteilen[49] von Datenreplikationen oder -abrufen aus externen
 Quellen verbunden sind. Dies mag ein Grund dafür sein, dass sich
 Prozessautomatisierungslösungen besonders im integrierten Verbund mit
 ERP- oder CRM-Lösungen durchgesetzt haben. Dedizierte BPM-Lösungen am
@@ -1414,8 +1225,7 @@ konzentrieren. Es stützt sich dabei auf eigene Standards, Prinzipien und
 Vokabeln, die in den 90er Jahren von der *Workflow Management Coalition*
 in einem Referenzmodell zusammengeführt wurden (Vgl. ).
 
-![](media/image006.png){width="3.005528215223097in"
-height="1.1771653543307086in"}Workflow Management Systeme (WfMS) sind
+![](media/image006.png)Workflow Management Systeme (WfMS) sind
 einfache Softwarelösungen zur Automatisierung von arbeitsteiligen
 Geschäftsaktivitäten, wohingegen die komplexeren BPMS die Technologie
 zur Automatisierung ganzer (*End-to-End*)-Prozesse darstellen . Es
@@ -1424,12 +1234,12 @@ Das Prozessmodell leitet sich vom Geschäftsprozess des Unternehmens ab.
 Das WfMS kann damit als Instrument der BPM verstanden werden ein
 Prozessmodell durchaus auch unter Anwendung mehrerer Workflows zu
 automatisieren. Es ist gegenüber der BPMS limitiert in der Integration
-von Personen[^50] und proprietärer Schnittstellen zu teilnehmenden
+von Personen[50] und proprietärer Schnittstellen zu teilnehmenden
 Systemen. , womit ein WfMS ein BPMS nicht ersetzt.
 
 ### Referenz-Modell
 
-![](media/image007.png){width="5.9in" height="3.55in"}
+![](media/image007.png)
 
 <span id="_Toc442172875" class="anchor"></span>Abbildung : Workflow
 Reference-Model nach
@@ -1449,9 +1259,9 @@ oder der Termination im Fehlerfall – nennt sich *Workflow-Engine*. Jede
 Instanz durchläuft einen festgelegten Lebenszyklus (*Lifecycle*),
 welcher von der Erstellung bis zum Abschluss von einer Software
 übernommen wird, die nach dem Referenzmodell der *Workflow Management
-Coalition* als *Workflow Enactment Service*[^51] benannt ist.
+Coalition* als *Workflow Enactment Service*[51] benannt ist.
 
-![](media/image008.png){width="5.9in" height="2.308333333333333in"}
+![](media/image008.png)
 
 <span id="_Toc442172876" class="anchor"></span>Abbildung : Lifecycle
 eines Workflows
@@ -1466,7 +1276,7 @@ zentralen Bereitstellung eines Arbeitsvorrats (*Workload*) bestehend aus
 Arbeitspaketen (*Workitems*), die den Instanzen von Aktivitäten im
 Workflow entsprechen.
 
-![](media/image009.png){width="5.9in" height="1.5416666666666667in"}
+![](media/image009.png)
 
 <span id="_Toc442172877" class="anchor"></span>Abbildung : Lifecycle
 einer Aktivität im Workflow
@@ -1486,7 +1296,7 @@ Die Entwicklung der Integrationsstrategien und -systeme zeigen, dass
 sich weitreichende Folgen für die IT-Architektur in Unternehmen ergeben
 haben. Die Einführung der Bus-Systeme (ESB, MOM) bildet auf dem Level
 der Systemarchitektur einen neuen *Layer* aus und erweitert die
-klassische Drei-Schichten-Architektur[^52]. Die SOA führt das
+klassische Drei-Schichten-Architektur[52]. Die SOA führt das
 *Service*-Konzept in der Applikationsarchitektur ein und abstrahiert den
 Zugriff auf Funktionalitäten und Daten einer Anwendung nach außen über
 einheitliche auf *Webservice*-Technologien ausgerichtete Schnittstellen.
@@ -1508,9 +1318,9 @@ Integration von Daten eingegangen. Der Austausch von Informationen
 (*information*) steht zwar in jeder der vorgestellten Evolutionsstufen
 der klassischen Integration im Mittelpunkt – jedoch gibt es für
 Datenintegrationen eigene nicht näher erläuterte Strategien und
-Technologien[^53] - wie etwa *Extract-Tranform-Load* (ETL).
+Technologien[53] - wie etwa *Extract-Tranform-Load* (ETL).
 
-![](media/image010.png){width="5.9in" height="2.175in"}
+![](media/image010.png)
 
 <span id="_Toc442172878" class="anchor"></span>Abbildung : Kombinierte
 Integrationsstrategien nach
@@ -1524,8 +1334,7 @@ erreicht. Wohingegen Funktionen und Daten aus Altsystemen (rechts im
 Bild) über eine ETL-Strecke oder einem Mittel der klassischen
 EAI-Lösungen (bspw. MOM) zugänglich gemacht werden.
 
-![](media/image011.png){width="2.4488188976377954in"
-height="2.6141732283464565in"}Spätestens mit Einführung der SOA erhält
+![](media/image011.png)Spätestens mit Einführung der SOA erhält
 das Management eines Unternehmens Einzug in die Integrationsprojekte,
 denn die Ausrichtung der Integrationsstrategie hat immer mehr
 Auswirkungen nicht nur auf dem Technologie-*Stack* des Unternehmens,
@@ -1567,7 +1376,7 @@ Als zentrale Einheit der Prozessteuerung unterliegt seine
 Implementierung aufgrund zahlreicher externer Abhängigkeiten vielen
 Änderungen. Um deren Auswirkungen in Grenzen zu halten, ist die
 geeignete Organisation von Ressourcen und Design-Artefakten
-notwendig[^54].
+notwendig[54].
 
 In Kapitel 5.1 wird der Autor exemplarisch ein Totales Architekturmodell
 anhand eines Anwendungsfalls erarbeiten und eine Referenzarchitektur
@@ -1614,12 +1423,12 @@ deren Enden ein *release*fähiges *Feature* steht. Sämtliche *Features*
 eines Projektteams gehen in das Produkt ein, für das sich ein Team
 verantwortlich zeichnet. Eine agile Organisation richtet sich damit auf
 Produkte aus und widerstrebt der traditionellen Aufteilung von
-Zuständigkeitsbereichen in der IT-Organisation[^55].
+Zuständigkeitsbereichen in der IT-Organisation[55].
 
 Integrationsprojekte können sich den agilen Mustern der
 Produktentwicklung schwerer fügen. Die Anforderungen an Qualität und
 Sicherheit sind besonders hin zu den *Backend*-Systemen und in der
-B2B-Integration hoch[^56]. Die Maßnahmen zur Qualitätssicherung – etwa
+B2B-Integration hoch[56]. Die Maßnahmen zur Qualitätssicherung – etwa
 dem Ausführen automatischer Tests – sind wegen der Integration vieler
 externer Komponenten aufwendiger. Letztendlich hängt die Eignung einer
 SOA-basierten Lösung für häufige Änderungen und *Releases* von ihrem
@@ -1640,7 +1449,7 @@ Autonomie der Produktentwicklung zu wahren. Das ist technisch mit den
 Werkzeugen der klassischen Integrationsstrategien schwierig, denn sie
 sind komplex und unternehmenskritisch und selten zugänglich für externe
 Entwickler. Die notwendig aufzubauende Infrastruktur und die Beschaffung
-weiterer Lizenzen[^57], die es braucht, um vielen Entwicklungsteams die
+weiterer Lizenzen[57], die es braucht, um vielen Entwicklungsteams die
 Arbeit mit einer SOA-*Suite* zu ermöglichen, sind kostenintensiv.
 
 <span id="_Ref441692035" class="anchor"><span id="_Toc442172983" class="anchor"></span></span>Modularisierung – Microservices übernehmen agile Wertekonzepte
@@ -1682,7 +1491,7 @@ Ressourcenteilung zwingen wird. Somit sollten auch *Microservices* aus
 fachlichen Gesichtspunkten heraus konzipiert werden. legt die Abbildung
 des Informationenmodells eines Unternehmens in ein Domänenmodell nahe.
 
-![](media/image012.png){width="2.575in" height="3.115972222222222in"}Das
+![](media/image012.png)Das
 Informationenmodell identifiziert unter anderem die Geschäftsobjekte
 (Differenzierung nach Entitäten und Werteobjekten) mit ihren Attributen,
 ihren Beziehungen zueinander und ihrer physikalischen oder logischen
@@ -1711,8 +1520,7 @@ gegenüber syntaktischen Verschiedenheiten nicht durch technische Mittel
 wie einem *Mapping* beherrschen. Um nun die Integrität eines Modells zu
 gewährleisten, führt den *Bounded Context* ein. Er bildet ähnlich einer
 Demarkationslinie von Völkerrechtsstaaten ein Gebiet aus, in deren
-![](media/image013.png){width="4.058333333333334in"
-height="2.6506944444444445in"}Grenzen die Eigenschaften, Bedeutungen und
+![](media/image013.png)Grenzen die Eigenschaften, Bedeutungen und
 Verhaltensweisen eines Modells im geschäftlichen wie im technischen Sinn
 einheitlich sind. Beziehen sich mehrere identifizierte Kontexte in
 widersprüchliche Weise auf gleiche Modelle, besteht die Kunst darin die
@@ -1726,7 +1534,7 @@ Sind die Grenzen eines *Microservice* definiert, werden technische
 Artefakte bis hin zu den Daten aus allen Applikations- und Systemdomänen
 in den Anwendungs*stack* des *Microservice* umgezogen .
 
-![](media/image014.png){width="4.941666666666666in" height="2.475in"}
+![](media/image014.png)
 
 <span id="_Toc442172882" class="anchor"></span>Abbildung 11:
 Microservice-Stacks nach Bounded Contexts
@@ -1751,7 +1559,7 @@ externe und unerwünschte Abhängigkeit erkannt worden. Die Befähigung
 eines Entwicklers die produktive Laufzeitumgebung eigenverantwortlich zu
 betreiben, verschiebt die Zuständigkeiten zwischen dem Betriebsteam und
 den Entwicklern. Diese Kooperation wird unter dem Schlagwort
-*DevOps*[^58] geführt. Der Zugewinn an Verantwortlichkeit ermöglicht es
+*DevOps*[58] geführt. Der Zugewinn an Verantwortlichkeit ermöglicht es
 dem Entwickler nun auch seine Software kontinuierlich in die Produktion
 einzuspielen (CD: *Continuous Delivery*). Um den Aufwand und die
 Qualität für die Ausbringung der Software zu gewährleisten,
@@ -1759,7 +1567,7 @@ automatisieren Unternehmen ihre *Deployment*-Prozesse und bauen
 Qualitätssicherungsinstrumente wie automatisierte Tests und
 Konfigurationsmanagement in ihre Ausbringungsketten (*Delivery Chains*)
 ein. Weitere Strategien wie *Blue-Green*- oder
-*Canary*-*Deployments*[^59] (Vgl. ) reduzieren die Gefahrenpotentiale
+*Canary*-*Deployments*[59] (Vgl. ) reduzieren die Gefahrenpotentiale
 selbstverantworteter Releases im CD.
 
 ### Herausforderungen für Integration
@@ -1778,15 +1586,14 @@ einstellen.
 
 *Microservices* erheben durch ihre zugesprochene Verantwortlichkeit für
 Daten und Funktionen nun auch den Anspruch über Bestimmung des
-Datenmodells ihr Entitäten (SoR[^60]). Das für den *Message Broker*
+Datenmodells ihr Entitäten (SoR[60]). Das für den *Message Broker*
 vorgestellte CDM gibt Bedarf zur Diskussion – möchte es nicht nur ein
 redundantes und zu pflegendes Artefakt der Wahrheitsquelle sein.
 
 <span id="_Ref441512724" class="anchor"><span id="_Ref441513485" class="anchor"><span id="_Toc442172987" class="anchor"></span></span></span>Pragmatisierung –APIs, Messaging und sonst nichts? 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-![](media/image015.png){width="4.059027777777778in"
-height="2.6979166666666665in"}*Microservices* kapseln ihre Interna, um
+![](media/image015.png)*Microservices* kapseln ihre Interna, um
 unnötige Komplexität in der Anwendungslandschaft zu vermeiden und
 andererseits die Freiheitsgrade des an ihm entwickelnden Teams zu
 erhöhen. Jedoch erfüllen *Microservices* einen Wertbeitrag vorwiegend
@@ -1806,13 +1613,13 @@ eine geeignete Integrationsmethode.
 
 Die Abschottung eines *Microservice* impliziert die gewollte Freiheit
 für ein Entwicklerteam die zur Umsetzung der *Features* angewandten
-Technologien frei zu bestimmen[^61]. Umso wichtiger wird es, die
+Technologien frei zu bestimmen[61]. Umso wichtiger wird es, die
 Schnittstellen an den Systemgrenzen technologie-agnostisch zu halten und
 auf Standards zu setzen. Aufgrund der sich durchgesetzten *Webservices*
-ist insbesondere *RESTful* HTTP[^62] zur Grundlage einer
+ist insbesondere *RESTful* HTTP[62] zur Grundlage einer
 *Microservice*-API geworden . Dieses Paradigma gestaltet eine
 *Webservice*-Schnittstelle ressourcenorientiert. Sie adressiert
-standardisierte Lese- und Schreiboperationen[^63] auf einen Datensatz
+standardisierte Lese- und Schreiboperationen[63] auf einen Datensatz
 und ist darum ideal, um einen entitätsbezogenen Datenaustausch mit dem
 *Microservice* auszuführen. Eine weitgehende Einhaltung des
 REST-über-HTTP-Standards an den Schnittstellen erleichtert die
@@ -1905,7 +1712,7 @@ Integrationsprodukten wie einem ESB.
 
 ### <span id="_Ref441961245" class="anchor"><span id="_Toc442172992" class="anchor"></span></span>Cloud-Services
 
-Mit dem Durchbruch der *Cloud-Computing*-Dienste[^64] wie Amazon’s AWS
+Mit dem Durchbruch der *Cloud-Computing*-Dienste[64] wie Amazon’s AWS
 oder Microsoft’s Azure ist es heute sehr einfach nicht nur virtuelle
 Hardware, sondern auch virtualisierte Software und Plattform-*Services*
 einzusetzen. Die konsumentenfreundliche Ausrichtung aller Angebote als
@@ -1924,8 +1731,7 @@ ausgerollt werden kann. Für IT-Manager sind *Cloud*-Angebote aufgrund
 flexibler Abrechnungsmodelle *(„Pay as your go“*) und damit
 transparenterer Kostenstrukturen interessant.
 
-![](media/image016.png){width="5.891666666666667in"
-height="2.433333333333333in"}
+![](media/image016.png)
 
 <span id="_Toc442172884" class="anchor"></span>Abbildung :
 „Managed“-Grad eines Cloudportfolios
@@ -1994,7 +1800,7 @@ Eine Konsequenz aus der anhaltenden Migration von Unternehmen in die
 *Cloud* ist die gewachsene Anzahl von *Open APIs*. Unternehmen ergeben
 sich damit im B2B-Segment – und gerade aufgrund der sehr offenen
 sozialen Netzwerke auch im B2C-Umfeld – neue Geschäftsmodelle und
-Zielkundengruppen[^65]. Integrationslösungen beschäftigen sich schon
+Zielkundengruppen[65]. Integrationslösungen beschäftigen sich schon
 heute mit der kommerziell motivierten Anbindung solcher APIs.
 
 *Cloud*-Anbieter und die traditionellen Produkthersteller für
@@ -2049,7 +1855,7 @@ Planung und Durchführung von Integrationsprojekten erfordern.
 <span id="_Ref441517819" class="anchor"><span id="_Toc442172997" class="anchor"></span></span>Sinneswandel
 ----------------------------------------------------------------------------------------------------------
 
-Ein *Integration Competency Center* (ICC)[^66] in einem Unternehmen, das
+Ein *Integration Competency Center* (ICC)[66] in einem Unternehmen, das
 sich mit der Integration in der IT-Landschaft befasst, muss lernen zu
 akzeptieren, dass es mit den klassischen Integrationsstrategien kein
 Auskommen mehr gibt. Sie basieren auf einer zentralen Autorität und
@@ -2058,8 +1864,7 @@ technisch wie auch organisatorisch abhängen. Der Trend zur dezentralen
 Selbstbestimmung von Projektteams und ihren Produktentwicklungen ist ein
 Erfolgsfaktor des *Digital Business*. Dem muss sich das ICC anschließen.
 
-![](media/image017.png){width="4.141666666666667in"
-height="2.97170384951881in"}Die erst kürzlich aufgekommene Welle von
+![](media/image017.png)Die erst kürzlich aufgekommene Welle von
 Innovationen im IPaaS und ISaaS-Produktumfeld Jahre nach der Etablierung
 von PaaS und SaaS-Produkten, zeigt am Beispiel der *Cloud*-Technologien
 einen zeitlichen Versatz, mit dem Integrationslösungen den Innovationen
@@ -2094,7 +1899,7 @@ gibt den Entscheidungsträgern eines Unternehmens richtige Impulse, um
 durch technologische wie organisatorische Änderungen die Erreichung der
 Vision eines Unternehmens zu entsprechen.\
 Die Disziplin der *Enterprise Architecture* instrumentalisiert die
-Aufstellung technischer Architekturen (*Technical architecture*)[^67]
+Aufstellung technischer Architekturen (*Technical architecture*)[67]
 dazu, die von ihr ausgegebenen Ziele in das allgemeingültige Design
 (etwa SOA) der Anwendungslandschaft zu etablieren. Dies kommt der
 Referenzarchitektur gleich, welche von im Ansatz zur Totalen Architektur
@@ -2149,7 +1954,7 @@ Strategie einer Integration einem übergeordneten Gremium – einer
 aufgehängt und besitzt nach Guttridge weder die Befugnis noch
 Weitsichtigkeit für eine umfassende Integrationsstrategie. Das ISG
 hingegen steht über den Modi und setzt sich interdisziplinär aus
-verschiedenen technischen Entscheidungsträgern zusammen[^68]. . Ihnen
+verschiedenen technischen Entscheidungsträgern zusammen[68]. . Ihnen
 obliegt die Zuordnung und Unterstützung von Projekten in den Modi,
 unterweist sie aber auch in die Regeln und Grenzen der auferlegten
 Integrationsstrategie.
@@ -2162,7 +1967,7 @@ Unternehmensstrategie verfolgen.
 
 **Die operative Kultur** („*Operator culture*“) findet sich vornehmlich
 in der *Backend*-Domäne und arbeitet demnach in „Mode 1“-Manier. Sie
-fokussieren effiziente, regelkonforme[^69] und umsatzgetriebene Prozesse
+fokussieren effiziente, regelkonforme[69] und umsatzgetriebene Prozesse
 und organisieren sich in klassischen Projektvorgehensmodellen wie dem
 Wasserfall-Modell. Diese Kultur entfaltet sich mehrheitlich in den
 Fachabteilungen des *Backoffice* oder in ihnen dediziert unterstellten
@@ -2331,7 +2136,7 @@ Schulungen obliegt der ICC, deren neue Rolle als Unterstützer
 Unternehmens (Ad-hoc-Integratoren, *Citizen Integrators*) über ein *Self
 Service Integration Portal* zugänglich. Das Aufstellen dieses Portals
 ist eine sehr große Herausforderung und ihre Umsetzung zum großen
-Teil[^70] noch theoretisches Gedankengut. Es braucht die weitere
+Teil[70] noch theoretisches Gedankengut. Es braucht die weitere
 Entwicklung der IPaaS/ISaaS-Produkte, deren Geburtsstunde noch nicht
 lang zurückliegt.
 
@@ -2363,11 +2168,10 @@ Realisierung von Datenflüssen über System- und Abteilungsgrenzen hinweg.
 
 ### <span id="_Ref442014571" class="anchor"><span id="_Ref442014585" class="anchor"><span id="_Toc442173006" class="anchor"></span></span></span>Geschäftsprozess am Beispiel
 
-![](media/image018.png){width="5.904861111111111in"
-height="1.8250109361329834in"}
+![](media/image018.png)
 
 <span id="_Toc442172886" class="anchor"></span>Abbildung :
-Geschäftsprozess mit Mahnverfahren nach Leistungsbuchung[^71]
+Geschäftsprozess mit Mahnverfahren nach Leistungsbuchung[71]
 
 Die Aufstellung eines Modells veranschaulicht zunächst den
 abteilungsübergreifenden Prozess zur Leistungsbuchung mit Zahlungsverzug
@@ -2393,8 +2197,7 @@ vollzogen, deren Ergebnisse im allgemeingültigen *Business Objekt Model*
 ordnet ihren Attributen bereits Typeigenschaften zu. Die für den oben
 dargestellten Prozess sind die folgenden Entitäten relevant:
 
-![](media/image019.png){width="5.904861111111111in"
-height="2.110748031496063in"}
+![](media/image019.png)
 
 <span id="_Ref441698351" class="anchor"><span id="_Ref441698324"
 class="anchor"><span id="_Ref441698372" class="anchor"><span
@@ -2405,8 +2208,7 @@ Einzelne Entitäten werden nun auf den abteilungsübergreifenden
 Datenflüssen abgebildet, um abhängige Datenmodelle zwischen zwei
 Interaktionspartnern zu erkennen.
 
-![](media/image020.png){width="5.904861111111111in"
-height="1.8250109361329834in"}
+![](media/image020.png)
 
 <span id="_Ref441599752" class="anchor"><span id="_Ref441599711"
 class="anchor"><span id="_Toc442172888"
@@ -2430,11 +2232,10 @@ eine auf die fachlichen Bedürfnisse ausgerichtete, individuelle
 Datenstrukturierung nach innen überlassen, solange sie nach außen eine
 CDM-konforme Schnittstelle bereitstellen. Je mehr sich die internen
 Datenstrukturen dem CDM gleichen, desto geringer ist der Aufwand eines
-Daten-*Mappings*, das entweder systemintern oder durch den ESB[^72]
+Daten-*Mappings*, das entweder systemintern oder durch den ESB[72]
 übernommen werden kann.
 
-![](media/image021.png){width="5.904861111111111in"
-height="2.859646762904637in"}
+![](media/image021.png)
 
 <span id="_Toc442172889" class="anchor"></span>Abbildung :
 Systemarchitektur mit entitätsbezogenen Datenflüssen
@@ -2572,9 +2373,9 @@ finden.
 **TIBCO Administrator** verwaltet die Systeme, die in einer logischen
 Lösungsdomäne (*Domain*) zusammenarbeiten. Systeme müssen als Verbund in
 einer Domäne registriert werden, denn diese hält globale Konfigurationen
-bereit wie etwa die Art der Persistenz von Konfigurationen[^73], die
+bereit wie etwa die Art der Persistenz von Konfigurationen[73], die
 Anbindung an das Netzwerk oder das systemübergreifende
-Kommunikationsprotokoll[^74]. Insbesondere jedoch erledigt sich durch
+Kommunikationsprotokoll[74]. Insbesondere jedoch erledigt sich durch
 die Registrierung eines *Hosts* in der Domäne dessen Bekanntmachung für
 die anderen teilnehmenden *Hosts*. Gleichartige TIBCO-Anwendungen können
 in *Failover-Clustern* organisiert werden, sodass Ausfallsicherheit und
@@ -2597,7 +2398,7 @@ TIBCO-Komponenten und den Zustand des Systems selbst dienen. Der so
 genannte H*awk Agent*, der auf jedem TIBCO-*Host* läuft, überwacht die
 Komponenten seines Systems und tauscht wesentliche Informationen mit
 anderen *Hawk Agents* in einer TIBCO-Domäne aus. Die Vielzahl von
-Metriken[^75], die der *Agent* sammelt, können über eine webbasierte UI
+Metriken[75], die der *Agent* sammelt, können über eine webbasierte UI
 (*Hawk Display*) eingesehen werden. *Hawk Rules* ermöglichen die
 Auswertung der Metriken auf Grundlage von formulierten Regeln und
 definieren bei Wahrheitserfüllung einer Regel durchzuführende Aktionen
@@ -2642,7 +2443,7 @@ Ansätze auf die in Softwaremodulen entscheidenden Faktoren bewertet.
 **Eine gute Modularisierung zeichnet starke Kohäsion aus **
 
 Um nun Sorge dafür zu tragen, dass Änderungen eines Artefakts möglichst
-wenige unbeteiligte / nicht betroffene Artefakte berühren[^76], ist die
+wenige unbeteiligte / nicht betroffene Artefakte berühren[76], ist die
 Wahrung einer starken Kohäsion in einem Modul wichtig. Denn die
 Wahrscheinlichkeit, dass eine Änderung an Artefakt X einer Änderung oder
 zumindest einem neuen Softwaretest an Artefakt Y bedarf, ist höher,
@@ -2738,10 +2539,10 @@ dass nicht nur die Daten selbst (*ASCIIContent*) übersetzt werden,
 sondern auch Schnittstellenkonfigurationen (wie hier Bestandteile des
 HTTP-*Headers*) beschrieben werden.
 
-![](media/image022.png){width="5.916666666666667in" height="2.25in"}
+![](media/image022.png)
 
 <span id="_Toc442172890" class="anchor"></span>Abbildung : Grafisches
-Mapping im TIBCO BusinessStudio[^77]
+Mapping im TIBCO BusinessStudio[77]
 
 Es werden *Designer*-Prozesse genutzt, um die XML-Eingabe über eine
 Schnittstelle oder einem Adapter, die XML-Ausgabe in eine oder mehrere
@@ -2753,7 +2554,7 @@ sodass Teile von Kontrollflüssen in Subprozesse ausgelagert werden
 können. Dies fördert die Nachvollziehbarkeit des Prozess*designs* und
 ebenso den Grad der Wiederverwendbarkeit einzelner Prozesskomponenten.
 
-![](media/image023.png){width="5.9in" height="1.6541666666666666in"}
+![](media/image023.png)
 
 <span id="_Ref441757117" class="anchor"><span id="_Toc442172891"
 class="anchor"></span></span>Abbildung : Prozess zum Empfang offener
@@ -2770,7 +2571,7 @@ weiterer *Designer*-Prozess an, der aus Nachrichteneingängen in die
 EMS-*Queue* reagiert und das *Salesforce*-System mit den offenen Posten
 versorgt.
 
-![](media/image024.png){width="5.9in" height="1.492361111111111in"}
+![](media/image024.png)
 
 <span id="_Ref441762815" class="anchor"><span id="_Toc442172892"
 class="anchor"></span></span>Abbildung : Prozess zum Versand offener
@@ -2851,7 +2652,7 @@ Nachrichtenempfangs. **
 
 Die Aufbereitung meint in diesem Kontext allgemein die Anwendung
 statischer / unveränderlicher Prozeduren auf eine variable
-Nachricht[^78]. Wird die einwandfreie Funktionalität dieser Prozeduren
+Nachricht[78]. Wird die einwandfreie Funktionalität dieser Prozeduren
 angenommen, kann die Ursache fehlerhafter Nachrichtenaufbereitung nur in
 der Ausprägung der Nachricht selbst liegen. Diese Tatsache ist durch
 Reproduzierbarkeit des Fehlers mit derselben Nachricht nachweisbar. Da
@@ -2913,7 +2714,7 @@ erfolgreich, wird die aus der EMS-*Queue* empfangene Nachricht
 bestätigt. Nach dem Prinzip der *Delegation with Confirmation* verbleibt
 die Nachricht in der *Queue* für *Clients* unsichtbar, solange sie durch
 den abrufenden *Client* nicht bestätigt wurde oder aber eine bestimmte
-Zeitdauer nicht verstrichen ist[^79]. Nach Bestätigung entfernt EMS die
+Zeitdauer nicht verstrichen ist[79]. Nach Bestätigung entfernt EMS die
 Nachricht aus der *Queue*. In der im *Designer*-Prozess dargestellten
 kontrollierten Fehlerbehandlung – jedoch ebenso bei nicht abgefangenen
 Fehlern – bleibt die Bestätigung aus, sodass mit Verstreichen der
@@ -2931,7 +2732,7 @@ Die Regel könnte hier erweitert werden um die Auswertung der Klasse des
 abgefangenen Fehlers. Wird ein potentiell beständiges Fehlerbild
 identifiziert, könnte die Nachricht den Kreislauf ohne Neuversuch
 verlassen. Bemerkt sein muss, dass sich das Vorgehen der Neuversuche nur
-für idempotente[^80] Prozessabläufe eignet.
+für idempotente[80] Prozessabläufe eignet.
 
 **Lösung 2: Versprechen zurückrufen**. Greift das Konzept der
 Neuversuche nicht, muss der ESB einen Prozess in Kraft treten lassen,
@@ -2974,7 +2775,7 @@ Die Lösung des *Data-Journals* richtet sich auf dem Wunsch aus
 Nachrichtenflüsse im ESB auf einfachere Weise analysieren zu können als
 nur sehr aufwendig über ein *Logging*. Gegenüber einer Textdatei mit
 umfangreichen *Log*-Ausgaben eignet sich etwa eine SQL-Tabelle besser
-für Auswertungen[^81]. Der Einsatz von *Monitoring*-Werkzeugen wie einem
+für Auswertungen[81]. Der Einsatz von *Monitoring*-Werkzeugen wie einem
 BAM ist in BW standardmäßig nicht gegeben.
 
 Aufgrund der Aufteilung der Abarbeitung eines Nachrichtenflusses in
@@ -3007,7 +2808,7 @@ dokumentiert ein Eintrag den Empfang einer Nachricht, zum anderen
 dokumentiert er im zweiten Prozess den (Miss-)Erfolg der Verarbeitung.
 
 Geschickte SQL-Statements oder die Nutzung von *Reporting*-Lösungen wie
-*Microstrategy*[^82] liefern einerseits statistische Auswertungen zur
+*Microstrategy*[82] liefern einerseits statistische Auswertungen zur
 Gegenüberstellung mit KPIs und zeigen zum anderen Fehleraufkommen oder
 sogar verloren gegangene Nachrichten auf.
 
@@ -3031,7 +2832,7 @@ Funktionsmoduls im ESB. Diese Referenz geht nicht auf individuelle
 Herausforderungen wie etwa der gängigen Stapelverarbeitung ein, schließt
 diese aber auch nicht aus.
 
-![](media/image025.png){width="5.9in" height="2.4694444444444446in"}
+![](media/image025.png)
 
 <span id="_Toc442172893" class="anchor"></span>Abbildung : Ausbaustufe 1
 – entitätsbezogene FApp-Modularisierung
@@ -3081,7 +2882,7 @@ zur Laufzeit über eine eigene FApp. Mit der FApp *Data-Journal* ist dem
 Leser bereits ein konkretes Beispiel bekannt. Aus ihr ist eine DTL
 abgeleitet, in welcher der Prozess und die Konfiguration zum Beschreiben
 der Journal-*Queue* enthalten sind. Data-Journal publiziert also das,
-was FApps schon zur Entwurfszeit bekannt sein muss über eine DTL[^83].
+was FApps schon zur Entwurfszeit bekannt sein muss über eine DTL[83].
 Zumindest diese Artefakte unterliegen zur Laufzeit wieder der
 Duplikation. Alle weiteren nicht in der DTL publizierten Artefakte sind
 zur Laufzeit von allen FApps konsumierbar. Hierbei kann nicht direkt von
@@ -3107,7 +2908,7 @@ dieser Lösung *Broker* genannt.
 
 Da sich die FApps mit ihren Artefakten schon zur Entwurfszeit nicht
 bekannt sind, sind sie auch zur Laufzeit nicht direkt aufrufbar. Demnach
-müssen *Broker* nach innen[^84] gerichtete Schnittstellen anbieten. Um
+müssen *Broker* nach innen[84] gerichtete Schnittstellen anbieten. Um
 die Kopplung zwischen den FApps und den *Brokern* nicht zu strapazieren,
 bilden EMS-*Queues* als Kommunikationskanal die bessere Alternative
 gegenüber HTTP- oder RMI-Schnittstellen. Die FApp *Data-Journal* macht
@@ -3150,10 +2951,10 @@ abfangen, nicht genutzte Ressourcen freigeben oder Ausfallsicherheit
 umsetzen. Eine gute Skalierung findet ein optimales Maß zwischen
 Ressourcenbereitstellung und -nutzung. Zu skalierende Anwendungen
 unterliegen bestimmter Voraussetzen, zu denen die Zustandslosigkeit
-gehört[^85]. Alle FApps und *Broker* erfüllen dieses Kriterium, da sie
+gehört[85]. Alle FApps und *Broker* erfüllen dieses Kriterium, da sie
 Nachrichten stets nur in EMS-*Queues* – also außerhalb der
 Anwendungsgrenzen – persistieren. Einige *Features* in BW – etwa das
-Setzen von Checkpoints[^86], mit denen diese Lösung jedoch nicht
+Setzen von Checkpoints[86], mit denen diese Lösung jedoch nicht
 arbeitet – würden bei Verwendung lokaler Speichermedien die
 Zustandslosigkeit aushebeln.
 
@@ -3177,8 +2978,7 @@ Abarbeitungsgeschwindigkeit an der diesem System anliegenden
 Schnittstelle. Hingegen hätten ohne Etablierung der *Broker* alle FApps
 skaliert werden müssen, die mit diesem System arbeiten.
 
-![](media/image026.png){width="3.28125in"
-height="3.2305555555555556in"}Mit BW6 ist die Verwaltung von
+![](media/image026.png)Mit BW6 ist die Verwaltung von
 Anwendungsskalierungen durch Einführung der *AppSpaces* komfortabler
 geworden. *AppSpaces* bilden einen sich über optional mehrere
 BW-Serverinstanzen erstreckenden logischen Container, in dem *AppNodes*
@@ -3204,8 +3004,7 @@ bestimmten System bzw. einer Anwendungsdomäne widmet. Die Verfahren zur
 garantierten Nachrichtenübermittlung (Vgl. Kapitel 5.3.3) gelten auch in
 der Kommunikation zwischen FApps und *Brokern* über die EMS-Queues.
 
-![](media/image027.png){width="5.907638888888889in"
-height="3.1770833333333335in"}
+![](media/image027.png)
 
 <span id="_Toc442172895" class="anchor"></span>Abbildung : Ausbaustufe 2
 – entitäts- und systembezogene Modularisierung
@@ -3251,7 +3050,7 @@ fehlschlagenden Arbeitsabläufen initiiert.
 
 Es ist durch die Eigenart einer *Service*-Choreografie bedingt, dass
 Prozessablauflogik auf deren dezentral ausgelagerte Teilnehmer (FApps,
-*Broker*) delegiert ist[^87] und eine zentrale Steuerung auf das
+*Broker*) delegiert ist[87] und eine zentrale Steuerung auf das
 Prozessverhalten fehlt. Benötigt wird eine zentrale Komponente, welche
 die Koordination zwischen FApps und *Brokern* übernehmen kann ohne sich
 direkt oder indirekt an sie zu binden. Hierzu wird ein weiteres
@@ -3265,8 +3064,7 @@ Paper* der WSO2, in dem die drei elementaren Bestandteile einer
 SOA-basierten Lösung allgemein als *Broker*, *Service Container* und
 *Process Coordinator* beschrieben sind.
 
-![](media/image028.png){width="5.902083333333334in"
-height="1.8041666666666667in"}
+![](media/image028.png)
 
 <span id="_Toc442172896" class="anchor"></span>Abbildung : Elementare
 Bausteine einer SOA nach
@@ -3278,7 +3076,7 @@ implementieren Geschäftslogik und kommen der Rolle von FApps gleich.
 Zuletzt ist es der *Process Coordinator*, welcher *Broker* und *Service
 Container* verbindet und durch ihre Vermittlung in einem Arbeitsfluss
 die Umsetzung einer fachlichen Aufgabe (*Use Case*) löst. Das neue
-Anwendungsmodul des *Mediators* muss dieser Rolle gerecht werden[^88].
+Anwendungsmodul des *Mediators* muss dieser Rolle gerecht werden[88].
 
 Die besondere Herausforderung des *Mediators* in BW ist der vom Autor
 selbst auferlegte Anspruch an Zustandslosigkeit aller Anwendungsmodule.
@@ -3373,7 +3171,7 @@ Setzen dieses Merkmals ist dem *Mediator* überlassen, der so die
 Fortsetzung des Ablaufs bestimmen kann ohne einen *Broker* oder eine
 FApp kennen zu müssen. Da bereits das statische Setzen eines Wertes im
 Nachrichtenkontext bedeute, dass der *Mediator* Ablauflogik
-enthält[^89], muss dieser Vorgang dynamisch und ebenso generisch
+enthält[89], muss dieser Vorgang dynamisch und ebenso generisch
 stattfinden. Eine Nachricht findet ihren Weg durch alle Anwendungsmodule
 im Idealfall selbst. Sie bestimmt ihren Weg durch ihren Inhalt. Ein Satz
 von (Geschäfts-)Regeln, auf welche der Nachrichteninhalt angewendet
@@ -3411,8 +3209,7 @@ differenziert wird. Zum anderen gibt es die ***Transaction***. Sie
 umschließt nicht nur die Nachrichtenverarbeitung (*Processor*) in einer
 FApp, sondern auch die Menge an *Outbound Transports*.
 
-![](media/image029.png){width="5.902083333333334in"
-height="1.1201388888888888in"}
+![](media/image029.png)
 
 <span id="_Ref441861943" class="anchor"><span id="_Toc442172897"
 class="anchor"></span></span>Abbildung : Lebenszyklus der Metaobjekte im
@@ -3435,8 +3232,7 @@ vor. *Transactions* sind ähnlich deklariert, formulieren eine
 Geschäftsregel, weisen einen *Worker*-Prozess aus und referenzieren auf
 eine FApp, in der dieser zu finden ist.
 
-![](media/image030.png){width="5.902083333333334in"
-height="2.752083333333333in"}
+![](media/image030.png)
 
 <span id="_Toc442172898" class="anchor"></span>Abbildung : Erweitertes
 Datenbankschema für Metadatenspeicher im ESB
@@ -3456,7 +3252,7 @@ Verarbeitungsprozesse anstoßen. Die Bestimmung der
 mehrere Versandprozesse aus einer Nachrichtenverarbeitung ableiten
 können.
 
-![](media/image031.png){width="5.902083333333334in" height="3.0375in"}
+![](media/image031.png)
 
 <span id="_Toc442172899" class="anchor"></span>Abbildung : Content-based
 Matching zwischen Transporten und Transaktionen
@@ -3540,16 +3336,16 @@ eines neuen *Brokers*:
 3)  Import der *Mediator* DTL mit den generischen *Workern* für FApps
     > oder *Broker*. Überschreiben der mit dem Template eingereichten
     > Konfiguration zur Modul-ID mit der ID der FApp oder des *Brokers*
-    > im Metadatenspeicher.[^90]
+    > im Metadatenspeicher.[90]
 
 In (Anhang 9: Generisches Design eines ESB Brokers mit Beispiel) wird
 die Referenzimplementierung für einen *Broker* gezeigt. Sie bezieht alle
 Einsatzmöglichkeiten eines *Brokers* ein – also dem Empfang und dem
 Versand von Nachrichten, die Bereitstellung der nicht näher erläuterten
 *Feedback-Worker*, mit denen auf positive oder negative
-Bestätigungsmeldungen vom *Mediator* reagiert werden kann[^91], sowie
+Bestätigungsmeldungen vom *Mediator* reagiert werden kann[91], sowie
 Prozesse zum synchronen Aufruf von Schnittstellen, die von FApps über
-RESTful HTTP o.ä. aufgerufen werden können[^92]. (Anhang 10: Generisches
+RESTful HTTP o.ä. aufgerufen werden können[92]. (Anhang 10: Generisches
 Design einer ESB FApp mit Beispiel) gibt das Referenzimplementierung für
 eine FApp vor, die nach dem *Mediator*-Prinzip arbeiten möchte. Das
 Beispiel in der zweiten Abbildung zeigt die oben erwähnte Einbindung
@@ -3568,8 +3364,7 @@ partizipieren möchte, sind damit gering in Bezug auf den Zusatzaufwand
 für Entwickler. Er konzentriert sich tatsächlich nur noch auf die
 Implementierung von fachlichen *Features*.
 
-![](media/image032.png){width="5.902083333333334in"
-height="3.0076388888888888in"}
+![](media/image032.png)
 
 <span id="_Toc442172900" class="anchor"></span>Abbildung : Ausbaustufe 3
 – Mediator als generischen Mittler
@@ -3677,7 +3472,7 @@ ein System als Teilnehmer eines *Workflows* erbringen muss, ist die
 Kommunikation über die SWF REST-API. Damit schließen sich Personen
 zunächst aus. SWF-*Workflows* haben nur technische Teilnehmer und
 arbeiten streng asynchron nach dem *Pull*-Prinzip. Sie gehen nie auf
-ihre Teilnehmer zu[^93].
+ihre Teilnehmer zu[93].
 
 Komponenten
 -----------
@@ -3779,17 +3574,16 @@ eine Liste während der Einplanung eines *Activity*- oder
 *Decision-Tasks* und der *Task* ist automatisch in einer Liste mit
 diesem Namen von einem Teilnehmer konsumierbar. Sofern *Tasks* in der
 Liste nicht mit höheren Prioritäten versehen sind, arbeitet die Ausgabe
-nach dem FIFO-Prinzip[^94].
+nach dem FIFO-Prinzip[94].
 
 **Domäne** (Domain)
 
 Domains bilden logische Container, denen sich alle vorangegangen
 Komponenten unterordnen. Sie selbst bestehen aus einem Namen, einer
 Beschreibung und der Konfiguration über Verweildauer eines
-abgeschlossenen Workflows in SWF[^95].
+abgeschlossenen Workflows in SWF[95].
 
-![](media/image033.png){width="5.902083333333334in"
-height="2.3833333333333333in"}
+![](media/image033.png)
 
 <span id="_Toc442172901" class="anchor"></span>Abbildung : Komponenten
 in SWF und Interaktion mit Workflow-Teilnehmern
@@ -3823,7 +3617,7 @@ einem TIBCO ESB *Broker* (*Activity Worker*) bei der Ausführung der
 Aufgabe unterstützt. Gegeben sei eine Nutzereingabe auf einer
 PHP-Webseite, die in das ERP-System eines Unternehmens gespeichert wird.
 Die Rückgabe des ERP-Systems versorgt den Workflow mit dem Kundenstamm
-des Web-Nutzers, welcher anschließend in einem S3-*Bucket*[^96] abgelegt
+des Web-Nutzers, welcher anschließend in einem S3-*Bucket*[96] abgelegt
 wird.
 
 1)  Über die AWS-Managementoberfläche wird der Workflow-Typ
@@ -4185,7 +3979,7 @@ Eingangsnachrichten iteriert und für jede Nachricht / Vertrag eine
 Noch davor werden aus dem Vertrag – einem JSON-Konstrukt – Informationen
 extrahiert. So wird die Vertrags-ID als *Workflow-ID* verwendet mit dem
 Effekt, dass jeder Vertrag nur eine aktive Ausführung dieses *Workflows*
-gleichzeitig haben kann.[^97]
+gleichzeitig haben kann.[97]
 
 Weitere extrahierte Informationen wie die Kunden-ID werden der
 Ausführung als *Tag* mitgegeben. *Tags* dienen zur leichteren
@@ -4274,7 +4068,7 @@ ERP- und *Salesforce-Broker* beziehen ihre zu versendenden Verträge
 nicht weiter aus den EMS-*Queues*, sondern müssen fortan gegen das
 REST-*Interface* einer SWF-*Task*liste *pollen*.
 
-![](media/image034.png){width="5.902083333333334in" height="1.59375in"}
+![](media/image034.png)
 
 <span id="_Toc442172902" class="anchor"></span>Abbildung :
 Salesforce-Broker übernimmt Rolle eines Activity Worker
@@ -4308,11 +4102,11 @@ Im vorliegenden Anwendungsfall bleiben dem *Service-Worker* der FApp
 *Contract* die Logik zur Filterung der Verträge von Testusern und die
 *Mappings* zur Datenanreicherung. Die Filterlogik wird der Ablauflogik
 des *Workflows* überschrieben, denn sie ist für den Fortgang des
-*Workflows* maßgeblich[^98]. Die Anreicherung der Vertragsdaten mit
+*Workflows* maßgeblich[98]. Die Anreicherung der Vertragsdaten mit
 Kunden- und Nutzerdaten und die Umwandlung in einen kanonischen Vertrag
 wird in einen *Activity Worker* ausgelagert. Der *Worker* nimmt
 JSON-Strings für Vertrag, Kunde und Nutzer entgegen, führt ein *Mapping*
-unter Verwendung der *Jackson*-Bibliotheken[^99] für *Java* durch und
+unter Verwendung der *Jackson*-Bibliotheken[99] für *Java* durch und
 gibt dem Aufrufer ein CDM-konformen Vertrag als JSON-String zurück.
 
 ### <span id="_Ref441960444" class="anchor"><span id="_Toc442173048" class="anchor"></span></span>Mediator
@@ -4509,8 +4303,7 @@ eigene SWF-*Workflows* zu entwickeln und ihre Steuerung mit eigenen
 *Worker Worker* Implementierungen zu verantworten. Die Choreografie
 mehrerer *Workflows* würde den gesamten Geschäftsprozess zusammensetzen.
 
-![](media/image035.png){width="5.902083333333334in"
-height="2.1881944444444446in"}
+![](media/image035.png)
 
 <span id="_Toc442172903" class="anchor"></span>Abbildung : SWF
 Workflow-Choreografie über Domain/Team-Grenzen
@@ -4528,8 +4321,7 @@ Der Nachteil von *Workflow*-Choreografien ist die sich verlierende
 das Konzept der *Child-Workflows* in SWF an und bewältigt dieselbe
 Problemstellung mit *Workflow*-Verschachtelung.
 
-![](media/image036.png){width="5.902083333333334in"
-height="2.1881944444444446in"}
+![](media/image036.png)
 
 <span id="_Toc442172904" class="anchor"></span>Abbildung :
 SWF-Workflow-Verschachtelung über Verantwortungsbereiche
@@ -4546,7 +4338,7 @@ nachvollziehbar. Je nach Ausführungsdauer eingebetteter *Workflows*
 verlängert sich dadurch die Ausführungszeit des übergeordneten
 *Workflows*. Dies hat Auswirkungen auf die leistungsbezogenen
 Abrechnungskosten für den SWF-*Service*, die jedoch eher gering
-sind[^100]. Unbeachtet der Bündelung aller *Workflows* in einer
+sind[100]. Unbeachtet der Bündelung aller *Workflows* in einer
 SWF-Domäne ist weiterhin freigestellt von wo aus *Decider* und *Activity
 Worker* arbeiten. Ein Team behält die Kontrolle über den Ablauf des
 verantworteten Teilprozesses, in dem er die für ihn zuständigen
@@ -4800,166 +4592,144 @@ ausgerichtet und ebnet nun den Weg für wahrhaftige
 *Self-Service-Integration-Portale*. Es ist ihr Beitrag zur digitalen
 Transformation eines Unternehmens.
 
- {#section .ListParagraph}
 
-Anhänge {#anhänge .ListParagraph}
+
+Anhänge
 =======
 
-### ![](media/image037.png){width="2.765972222222222in" height="8.842361111111112in"}![](media/image038.png){width="2.70625in" height="8.841666666666667in"}Anhang 1: Prozessmodell für Leistungsbuchung (mit und ohne Entitäten) {#anhang-1-prozessmodell-für-leistungsbuchung-mit-und-ohne-entitäten .ListParagraph}
+### ![](media/image037.png)![](media/image038.png)Anhang 1: Prozessmodell für Leistungsbuchung (mit und ohne Entitäten)
 
-### <span id="_Ref441668714" class="anchor"><span id="_Toc442173059" class="anchor"></span></span>![](media/image039.png){width="4.075in" height="9.489583333333334in"}Anhang 2: *Process Pattern Mapping* für Leistungsbuchung<span id="_Toc442034936" class="anchor"><span id="_Toc442035062" class="anchor"><span id="_Toc442035241" class="anchor"><span id="_Toc442043029" class="anchor"><span id="_Ref441769537" class="anchor"></span></span></span></span></span> {#anhang-2-process-pattern-mapping-für-leistungsbuchung .ListParagraph}
+### <span id="_Ref441668714" class="anchor"><span id="_Toc442173059" class="anchor"></span></span>![](media/image039.png)Anhang 2: *Process Pattern Mapping* für Leistungsbuchung<span id="_Toc442034936" class="anchor"><span id="_Toc442035062" class="anchor"><span id="_Toc442035241" class="anchor"><span id="_Toc442043029" class="anchor"><span id="_Ref441769537" class="anchor"></span></span></span></span></span> 
 
-### Anhang 3: Data-Journal in Microstrategy {#anhang-3-data-journal-in-microstrategy .ListParagraph}
+### Anhang 3: Data-Journal in Microstrategy
 
-![](media/image040.png){width="4.631893044619423in"
-height="9.516484033245844in"}
+![](media/image040.png)
 
-### <span id="_Ref441774255" class="anchor"><span id="_Toc442173061" class="anchor"></span></span>Anhang 4: FApp-Architektur für Weiterleitung offene Posten {#anhang-4-fapp-architektur-für-weiterleitung-offene-posten .ListParagraph}
+### <span id="_Ref441774255" class="anchor"><span id="_Toc442173061" class="anchor"></span></span>Anhang 4: FApp-Architektur für Weiterleitung offene Posten 
 
-![](media/image041.png){width="4.3800896762904635in"
-height="9.476923665791777in"}<span id="_Ref441776402"
+![](media/image041.png)<span id="_Ref441776402"
 class="anchor"></span>
 
-### Anhang 5: Referenz-Architektur für entitätsbezogenen Datenaustausch \#1 {#anhang-5-referenz-architektur-für-entitätsbezogenen-datenaustausch-1 .ListParagraph}
+### Anhang 5: Referenz-Architektur für entitätsbezogenen Datenaustausch \#1
 
-![](media/image042.png){width="4.0867738407699035in"
-height="9.515384951881014in"}<span id="_Ref441787220"
+![](media/image042.png)<span id="_Ref441787220"
 class="anchor"></span>
 
-### Anhang 6: Referenz-Architektur für entitätsbezogenen Datenaustausch \#2 {#anhang-6-referenz-architektur-für-entitätsbezogenen-datenaustausch-2 .ListParagraph}
+### Anhang 6: Referenz-Architektur für entitätsbezogenen Datenaustausch \#2
 
-![](media/image043.png){width="4.215384951881015in"
-height="9.548988407699037in"}
+![](media/image043.png)
 
-### Anhang 7: Generischer Nachrichtenfluss im ESB mit Beispiel {#anhang-7-generischer-nachrichtenfluss-im-esb-mit-beispiel .ListParagraph}
+### Anhang 7: Generischer Nachrichtenfluss im ESB mit Beispiel
 
-![](media/image044.png){width="5.9in" height="3.6381944444444443in"}
+![](media/image044.png)
 
 <span id="_Toc442172912" class="anchor"></span>Abbildung : Generischer
 Nachrichtenfluss im ESB
 
-![](media/image045.png){width="5.894444444444445in"
-height="3.638888888888889in"}
+![](media/image045.png)
 
 <span id="_Toc442172913" class="anchor"></span>Abbildung : Generischer
 Nachrichtenfluss im ESB am Beispiel
 
-### <span id="_Ref441850730" class="anchor"><span id="_Toc442173065" class="anchor"></span></span>Anhang 8: Generischer Nachrichtenfluss über ESB-Komponenten {#anhang-8-generischer-nachrichtenfluss-über-esb-komponenten .ListParagraph}
+### <span id="_Ref441850730" class="anchor"><span id="_Toc442173065" class="anchor"></span></span>Anhang 8: Generischer Nachrichtenfluss über ESB-Komponenten 
 
-![](media/image046.png){width="5.9in" height="8.377083333333333in"}
+![](media/image046.png)
 
 <span id="_Toc442172914" class="anchor"></span>Abbildung : Generischer
 Datenfluss über ESB-Komponenten
 
-### <span id="_Ref441864335" class="anchor"><span id="_Toc442173066" class="anchor"></span></span>Anhang 9: Generisches Design eines ESB Brokers mit Beispiel {#anhang-9-generisches-design-eines-esb-brokers-mit-beispiel .ListParagraph}
+### <span id="_Ref441864335" class="anchor"><span id="_Toc442173066" class="anchor"></span></span>Anhang 9: Generisches Design eines ESB Brokers mit Beispiel 
 
-![](media/image047.png){width="5.864583333333333in"
-height="3.3534722222222224in"}
+![](media/image047.png)
 
 <span id="_Toc442172915" class="anchor"></span>Abbildung : Generisches
 Design eines ESB-Brokers
 
-![](media/image048.png){width="5.8875in" height="3.2180555555555554in"}
+![](media/image048.png)
 
 <span id="_Toc442172916" class="anchor"></span>Abbildung : Generisches
 Design eines ESB-Brokers am Beispiel
 
-### <span id="_Ref441864796" class="anchor"><span id="_Toc442173067" class="anchor"></span></span>Anhang 10: Generisches Design einer ESB FApp mit Beispiel  {#anhang-10-generisches-design-einer-esb-fapp-mit-beispiel .ListParagraph}
+### <span id="_Ref441864796" class="anchor"><span id="_Toc442173067" class="anchor"></span></span>Anhang 10: Generisches Design einer ESB FApp mit Beispiel 
 
-![](media/image049.png){width="5.9006944444444445in"
-height="3.9006944444444445in"}
+![](media/image049.png)
 
 <span id="_Toc442172917" class="anchor"></span>Abbildung : Generisches
 Design einer ESB-FApp
 
-![](media/image050.png){width="5.894444444444445in"
-height="3.7819444444444446in"}
+![](media/image050.png)
 
 <span id="_Toc442172918" class="anchor"></span>Abbildung : Generisches
 Design einer ESB-FApp am Beispiel
 
-### <span id="_Ref441860579" class="anchor"><span id="_Toc442173068" class="anchor"></span></span>Anhang 11: Nachrichten mit anreicherndem Kontext im gen. Datenfluss {#anhang-11-nachrichten-mit-anreicherndem-kontext-im-gen.-datenfluss .ListParagraph}
+### <span id="_Ref441860579" class="anchor"><span id="_Toc442173068" class="anchor"></span></span>Anhang 11: Nachrichten mit anreicherndem Kontext im gen. Datenfluss 
 
-![](media/image051.png){width="4.83199365704287in"
-height="9.007518591426072in"}
+![](media/image051.png)
 
 <span id="_Toc442172919" class="anchor"></span>Abbildung : Nachrichten
 mit anreicherndem Kontext im gen. Datenfluss
 
-### <span id="_Ref441861776" class="anchor"><span id="_Toc442173069" class="anchor"></span></span>Anhang 12: Referenz-Architektur mit generischem Mediator  {#anhang-12-referenz-architektur-mit-generischem-mediator .ListParagraph}
+### <span id="_Ref441861776" class="anchor"><span id="_Toc442173069" class="anchor"></span></span>Anhang 12: Referenz-Architektur mit generischem Mediator 
 
-![](media/image052.png){width="5.902083333333334in"
-height="7.120138888888889in"}
+![](media/image052.png)
 
 <span id="_Toc442172920" class="anchor"></span>Abbildung :
 Referenz-Architektur mit generischem Mediator
 
-### <span id="_Ref441936591" class="anchor"><span id="_Toc442173070" class="anchor"></span></span>Anhang 13: AWS Flow Framework Implementierung mit SWF Interaktion {#anhang-13-aws-flow-framework-implementierung-mit-swf-interaktion .ListParagraph}
+### <span id="_Ref441936591" class="anchor"><span id="_Toc442173070" class="anchor"></span></span>Anhang 13: AWS Flow Framework Implementierung mit SWF Interaktion 
 
-![](media/image053.png){width="5.902083333333334in"
-height="8.774305555555555in"}
+![](media/image053.png)
 
 <span id="_Toc442172921" class="anchor"></span>Abbildung : AWS Flow
 Framework Implementierung mit SWF Interaktion
 
-### <span id="_Ref441944108" class="anchor"><span id="_Toc442173071" class="anchor"></span></span>Anhang 14: Vertragsweiterleitung bei Leistungsbuchung durch ESB {#anhang-14-vertragsweiterleitung-bei-leistungsbuchung-durch-esb .ListParagraph}
+### <span id="_Ref441944108" class="anchor"><span id="_Toc442173071" class="anchor"></span></span>Anhang 14: Vertragsweiterleitung bei Leistungsbuchung durch ESB 
 
-![](media/image054.png){width="5.367541557305337in"
-height="9.533834208223972in"}
+![](media/image054.png)
 
-### <span id="_Ref441960367" class="anchor"><span id="_Toc442173072" class="anchor"></span></span>Anhang 15: Hybride Integrationslösung für Vertragsweiterleitung mit SWF {#anhang-15-hybride-integrationslösung-für-vertragsweiterleitung-mit-swf .ListParagraph}
+### <span id="_Ref441960367" class="anchor"><span id="_Toc442173072" class="anchor"></span></span>Anhang 15: Hybride Integrationslösung für Vertragsweiterleitung mit SWF 
 
-![](media/image055.png){width="5.902083333333334in"
-height="8.127777777777778in"}
+![](media/image055.png)
 
 <span id="_Toc442172923" class="anchor"></span>Abbildung : Hybride
 Integrationslösung für Vertragsweiterleitung mit SWF
 
-### <span id="_Ref441965667" class="anchor"><span id="_Toc442173073" class="anchor"></span></span>Anhang 16: SWF im AWS-Ökosystem {#anhang-16-swf-im-aws-ökosystem .ListParagraph}
+### <span id="_Ref441965667" class="anchor"><span id="_Toc442173073" class="anchor"></span></span>Anhang 16: SWF im AWS-Ökosystem
 
-![](media/image056.png){width="5.894444444444445in"
-height="8.082638888888889in"}
+![](media/image056.png)
 
 <span id="_Toc442172924" class="anchor"></span>Abbildung : SWF im
 AWS-Ökosystem
 
-### <span id="_Ref442172645" class="anchor"><span id="_Toc442173074" class="anchor"></span></span>Anhang 17: SWF im AWS-Ökosystem (Exit-Strategie) {#anhang-17-swf-im-aws-ökosystem-exit-strategie .ListParagraph}
+### <span id="_Ref442172645" class="anchor"><span id="_Toc442173074" class="anchor"></span></span>Anhang 17: SWF im AWS-Ökosystem (Exit-Strategie)
 
-![](media/image057.png){width="5.862857611548557in"
-height="7.968655949256343in"}
+![](media/image057.png)
 
 <span id="_Toc442172925" class="anchor"></span>Abbildung : Denkbare
 Exit-Strategie für SWF und Anrainer-Produkte
 
-### <span id="_Ref442014451" class="anchor"><span id="_Toc442173075" class="anchor"></span></span>Anhang 18: SWF-Workflow Leistungsverbuchung mit Delegierung {#anhang-18-swf-workflow-leistungsverbuchung-mit-delegierung .ListParagraph}
+### <span id="_Ref442014451" class="anchor"><span id="_Toc442173075" class="anchor"></span></span>Anhang 18: SWF-Workflow Leistungsverbuchung mit Delegierung
 
-![](media/image058.png){width="5.894444444444445in"
-height="7.781944444444444in"}
+![](media/image058.png)
 
 <span id="_Toc442172926" class="anchor"></span>Abbildung : SWF-Workflow
 Leistungsverbuchung mit Delegierung
 
-### Anhang 19: CD-ROM {#anhang-19-cd-rom .ListParagraph}
+### Anhang 19: CD-ROM 
 
 Dieser Arbeit liegt ein Datenträger mit folgenden Inhalten bei:
 
 -   Quellen
-
     -   Bookmarks
-
     -   PDF-Dokumente
 
 -   Master-Thesis (Word 2016)
-
 -   Master-Thesis (PDF)
-
 -   ARIS-Modelle
-
 -   Ausgefülltes Bewertungsformular (PDF)
-
 -   Abstract-Formular (PDF)
 
-Literaturverzeichnis {#literaturverzeichnis .ListParagraph}
+Literaturverzeichnis
 ====================
 
 **Adam, Dr. Sebastian. 2013.** Studie – BPM Suites 2013. \[Online\]
@@ -5162,350 +4932,350 @@ guide to realising the benefits of Service-Orientation.* \[Online\]
 Oktober 14, 2011. \[Cited: Januar 30, 2016.\]
 http://www.mif.vu.lt/\~donatas/PSArchitekturaProjektavimas/Library/SOA/2011%20Practical%20SOA%20for%20the%20Solution%20Architect.pdf.
 
-[^1]: „Ich denke jeder hat erkannt, dass die Konsumenten die Kontrolle
+[1]: „Ich denke jeder hat erkannt, dass die Konsumenten die Kontrolle
     übernommen haben und sie diese auch nicht mehr abgeben. \[…\] So
     haben wir für jede neu hervortretende Technologie herauszufinden wie
     diese zu integrieren ist.“
 
-[^2]: *Digital Business* ist ein revolutionärer Geschäftsentwurf,
+[2]: *Digital Business* ist ein revolutionärer Geschäftsentwurf,
     welcher digitale und materielle Welten vereint und durch neuartige
     Kombinationen von Mensch (*people*), Gewerbe (*business*) und Gütern
     (*things*) bahnbrechende Geschäftsmodelle entstehen lässt.
 
-[^3]: *Disruptive Innovationen* nach sind Prozesse, die auf dem Markt
+[3]: *Disruptive Innovationen* nach sind Prozesse, die auf dem Markt
     zunächst unscheinbare kleine Produkte zum Marktdurchbruch bis hin
     zur Marktführerschaft über etablierte Marktgrößen befördern.
 
-[^4]: *Old Economy* sind die “klassischen, auf Warenprodukte
+[4]: *Old Economy* sind die “klassischen, auf Warenprodukte
     ausgerichteten Unternehmen“
 
-[^5]: *FinTech* steht für Finanztechnologie und steht für die Gesamtheit
+[5]: *FinTech* steht für Finanztechnologie und steht für die Gesamtheit
     der in ihr wirkenden Startups
 
-[^6]: Beispiele für typische Backend-Systeme in Unternehmen sind CRM-
+[6]: Beispiele für typische Backend-Systeme in Unternehmen sind CRM-
     oder ERP-Lösungen
 
-[^7]: Dilemma vom effizienten \[Geschäfts-\]Prozess und dem
+[7]: Dilemma vom effizienten \[Geschäfts-\]Prozess und dem
     Benutzererlebnis
 
-[^8]: Beim Internet geht es letztlich um Innovation und Integration.
+[8]: Beim Internet geht es letztlich um Innovation und Integration.
     \[…\] Nur erreichen Sie keine Innovation solange Sie die
     Web-Technologie nicht in die Prozesse integriert haben, die Ihr
     *Business* treiben. \[…\] Die eigentliche Revolution aus dem Web
     vollzieht sich, wenn das Web in die Geschäftsprozesse integriert
     werden kann.
 
-[^9]: Integrationslösungen für die Cloud: Integration Platform/Software
+[9]: Integrationslösungen für die Cloud: Integration Platform/Software
     as a Service (iPaaS, iSaaS)
 
-[^10]: Advanced open standards for information society
+[10]: Advanced open standards for information society
 
-[^11]: World Wide Web Consortium
+[11]: World Wide Web Consortium
 
-[^12]: Beispiel: Exposè-Publikationen bei Online-Immobilienportalen
+[12]: Beispiel: Exposè-Publikationen bei Online-Immobilienportalen
     arbeiten teilweise noch mit FTP-Datenimports. Dazu dient ein
     XML-Datenformat, beschrieben durch den OpenImmo-Standard
 
-[^13]: RPC: Remote Procedure Call; RMI: Remote Method Invokation
+[13]: RPC: Remote Procedure Call; RMI: Remote Method Invokation
 
-[^14]: Webservice Definition Language ist ein Beschreibungsdokument für
+[14]: Webservice Definition Language ist ein Beschreibungsdokument für
     einen Webservice
 
-[^15]: XML: eXtensible Markup Language Standard der W3C für eine
+[15]: XML: eXtensible Markup Language Standard der W3C für eine
     hierarchische Datenstruktur
 
-[^16]: *First in, First Out* (FIFO), *Last In, First* Out (LIFO) u.a.
+[16]: *First in, First Out* (FIFO), *Last In, First* Out (LIFO) u.a.
 
-[^17]: *Queue* ist bereits eine technologiespezifische Eigenbezeichnung
+[17]: *Queue* ist bereits eine technologiespezifische Eigenbezeichnung
     (bspw. bei JMS). Gemäß ist die allgemeingültige Bezeichnung
     *Point-to-Point-Channel*
 
-[^18]: Bekannte Vertreter sind MSMQ für Windows, JMS und AMQP
+[18]: Bekannte Vertreter sind MSMQ für Windows, JMS und AMQP
 
-[^19]: Bsp.: der TIBCO *Enterprise Messaging Server* (EMS) stellt die
+[19]: Bsp.: der TIBCO *Enterprise Messaging Server* (EMS) stellt die
     EMS *Java client library* zur Verfügung, welche im Hintergrund über
     JMS mit dem Server spricht
 
-[^20]: Es gilt das *Pull*-Prinzip. *Subscriber* holen sich die Nachricht
+[20]: Es gilt das *Pull*-Prinzip. *Subscriber* holen sich die Nachricht
     aus der *Queue* über so genanntes *Message Polling* ab.
 
-[^21]: *Topic* ist bereits eine technologiespezifische Eigenbezeichnung
+[21]: *Topic* ist bereits eine technologiespezifische Eigenbezeichnung
     (bspw. bei JMS). Gemäß ist die allgemeingültige Bezeichnung
     *Publish-Subscribe-Channel*
 
-[^22]: Einheit kann hier als eine Laufzeitumgebung, ein System oder
+[22]: Einheit kann hier als eine Laufzeitumgebung, ein System oder
     Anwendungsmodul verstanden werden.
 
-[^23]: Vom Nachrichteninhalt abhängiges *Routing* wird als
+[23]: Vom Nachrichteninhalt abhängiges *Routing* wird als
     *Content-based Routing* bezeichnet.
 
-[^24]: Von Metadaten abhängiges *Routing* wird als *Context-based
+[24]: Von Metadaten abhängiges *Routing* wird als *Context-based
     Routing* bezeichnet.
 
-[^25]: SDK: Software Development Kit
+[25]: SDK: Software Development Kit
 
-[^26]: Ein Beispiel ist die Produktfamilie der TIBCO ActiveMatrix
+[26]: Ein Beispiel ist die Produktfamilie der TIBCO ActiveMatrix
     Adapters
 
-[^27]: *Apache Camel*: http://camel.apache.org/
+[27]: *Apache Camel*: http://camel.apache.org/
 
-[^28]: *Layer* meint die Schichten der abgebildeten
+[28]: *Layer* meint die Schichten der abgebildeten
     Transformationskette, die Nachrichten zwischen zwei
     technologiefremden Systemen durchlaufen können. Adapter und
     Transformatoren einer MOM nehmen diese Transformationen den
     Applikationen im Idealfall ab.
 
-[^29]: Da Nachrichten vorwiegend in XML strukturiert sind, ist die
+[29]: Da Nachrichten vorwiegend in XML strukturiert sind, ist die
     technische Beschreibung eines Datenmodells häufig das XML-eigene
     Strukturdefinitionsformat XSD
 
-[^30]: Da Nachrichten vorwiegend in XML strukturiert sind, dient zur
+[30]: Da Nachrichten vorwiegend in XML strukturiert sind, dient zur
     technischen Definition der Konvertierungslogik oft die XML-eigene
     Programmiersprache XSLT
 
-[^31]: Beschrieben durch Schemata (i.d.R. der kanonischen Modelle)
+[31]: Beschrieben durch Schemata (i.d.R. der kanonischen Modelle)
 
-[^32]: Meint nicht das Absetzen von Kommandos wie in einer Konsole,
+[32]: Meint nicht das Absetzen von Kommandos wie in einer Konsole,
     sondern vielmehr den Versand einer Nachricht mit Instruktionen gegen
     ein MOM
 
-[^33]: *Hub&Spoke* steht für die Metapher von Speichen, die zu ihrer
+[33]: *Hub&Spoke* steht für die Metapher von Speichen, die zu ihrer
     (zentralen) Radnabe führen.
 
-[^34]: Versinnbildlicht das enge Geflecht von Datenflüssen zwischen
+[34]: Versinnbildlicht das enge Geflecht von Datenflüssen zwischen
     Systemen eines Netzwerkes, welche visualisiert in komplexen
     Architekturdiagrammen oft an Spaghetti erinnern.
 
-[^35]: Zusammengefasst in etwa einem Verzeichnisdienst wie UDDI, in den
+[35]: Zusammengefasst in etwa einem Verzeichnisdienst wie UDDI, in den
     Services nebst technischer Beschreibungen und Instruktionen für den
     Service-Konsumenten gelistet sind.
 
-[^36]: Etwa gehören Adapter zum Standardequipment eines ESBs
+[36]: Etwa gehören Adapter zum Standardequipment eines ESBs
 
-[^37]: Wohlgemerkt waren die Adapter nicht immer serverseitige
+[37]: Wohlgemerkt waren die Adapter nicht immer serverseitige
     Komponenten, sondern ein clientseitiges Gateway
 
-[^38]: Lose Kopplung (wenig Abhängigkeit nach außen) und starke Kohäsion
+[38]: Lose Kopplung (wenig Abhängigkeit nach außen) und starke Kohäsion
     (große Abhängigkeiten / Zusammengehörigkeit von Ressourcen) nach
     innen, sind beides ausgewiesene Grundsätze der SOA
 
-[^39]: Meint den Wechsel des Mediums bei der Übermittlung von Daten
+[39]: Meint den Wechsel des Mediums bei der Übermittlung von Daten
     zwischen zwei Systemen und verändert so nicht selten die Arbeit mit
     den Daten. Bsp. Ausdruck eines Dokuments zur Unterschrift an den
     Vorgesetzten und späteres Einscannen besitzt schon zwei
     Medienbrüche.
 
-[^40]: Erzwungen durch etwa gesetzliche Vorgaben oder der Einhaltung von
+[40]: Erzwungen durch etwa gesetzliche Vorgaben oder der Einhaltung von
     Qualitätsstandards
 
-[^41]: Technische Systeme könnten isoliert sein und sich nicht in
+[41]: Technische Systeme könnten isoliert sein und sich nicht in
     Automatismen integrieren lassen
 
-[^42]: Eine zentrale Ausführungsinstanz (Software o.ä.) oder ein
+[42]: Eine zentrale Ausführungsinstanz (Software o.ä.) oder ein
     Interpreter für ein Prozessmodell.
 
-[^43]: Kommerzielle Produkte um BPM-Systeme werden wegen ihrer vielen
+[43]: Kommerzielle Produkte um BPM-Systeme werden wegen ihrer vielen
     mitgelieferten Komponenten auch BPM-*Suites* genannt.
 
-[^44]: Bspw. finden sich häufig persönliche „Eingangskörbe“ für zu
+[44]: Bspw. finden sich häufig persönliche „Eingangskörbe“ für zu
     erledigende Aufgaben in ERP- oder CRM-Systemen wieder
 
-[^45]: Die Einhaltung des für die Schnittstelle existierenden SLAs ist
+[45]: Die Einhaltung des für die Schnittstelle existierenden SLAs ist
     dabei auch für den Konsumenten wichtig.
 
-[^46]: Bspw. die Berücksichtigung von Geschäftsregeln
+[46]: Bspw. die Berücksichtigung von Geschäftsregeln
 
-[^47]: WS-BPEL: *Web Services Business Process Execution Language* (Vgl.
+[47]: WS-BPEL: *Web Services Business Process Execution Language* (Vgl.
     )
 
-[^48]: ebXML ist ein weiteres Beispiel. Es wird mittlerweile nicht
+[48]: ebXML ist ein weiteres Beispiel. Es wird mittlerweile nicht
     weiterentwickelt.
 
-[^49]: Replikationen schaffen Redundanzen und die Gefahr von
+[49]: Replikationen schaffen Redundanzen und die Gefahr von
     Dateninkonsistenzen. Eine Geschäftsregel arbeitet nur noch bedingt
     mit Echtzeitdaten.
 
-[^50]: Workflow-Enginges der WfMS bieten gegenüber eines BPMS keine
+[50]: Workflow-Enginges der WfMS bieten gegenüber eines BPMS keine
     Benutzeroberflächen
 
-[^51]: Diese Arbeit wird den Terminus *Enactment Services* nicht weiter
+[51]: Diese Arbeit wird den Terminus *Enactment Services* nicht weiter
     von dem der *Workflow-Engine* unterscheiden und stets vom sich
     durchgesetzten Begriff der *Workflow-Engine* Gebrauch machen.
 
-[^52]: Bestehend aus der Präsentationsebene, der Anwendungsschicht und
+[52]: Bestehend aus der Präsentationsebene, der Anwendungsschicht und
     der Datenhaltung.
 
-[^53]: Siehe dazu den Magic Quadrant von Gartner zu
+[53]: Siehe dazu den Magic Quadrant von Gartner zu
     Datenintegrationstools
 
-[^54]: Die Bündelung solcher Komponenten (*Components*) in *Compsites*
+[54]: Die Bündelung solcher Komponenten (*Components*) in *Compsites*
     mündet in einer *Service Component Architecture* (SCA)
 
-[^55]: Teams fühlen sich nicht selten für eine bestimmte Technologie
+[55]: Teams fühlen sich nicht selten für eine bestimmte Technologie
     oder ein System berufen.
 
-[^56]: Prozesse der *Backend*-Systeme und in Richtung externe
+[56]: Prozesse der *Backend*-Systeme und in Richtung externe
     Geschäftspartner arbeiten überwiegend mit personenbezogenen und
     finanztransaktionalen Daten, deren Verlust folgenreich ist.
 
-[^57]: Lizenzen für SOA-basierte Produkte wie ESBs, BPMS oder WfMS sind
+[57]: Lizenzen für SOA-basierte Produkte wie ESBs, BPMS oder WfMS sind
     allgemein sehr teuer.
 
-[^58]: *DevOps* setzt sich aus den beiden Wörtern *Developer* und
+[58]: *DevOps* setzt sich aus den beiden Wörtern *Developer* und
     *Operations* zusammen.
 
-[^59]: Diese Methoden zielen auf partielle oder schrittweise
+[59]: Diese Methoden zielen auf partielle oder schrittweise
     *Deployments* und bedingen eine ausreichende Skalierung eines
     *Microservices* auf dem produktiven *Stack* (Vgl. Kapitel 3.4)
 
-[^60]: Sie übernehmen die Rolle eines *System of Record* (SoR) – also
+[60]: Sie übernehmen die Rolle eines *System of Record* (SoR) – also
     einem System, welches u.a. die hoheitliche Kontrolle über das
     Datenschema eines Datenelementes (*Record*) besitzt.
 
-[^61]: Es gibt selbstverständlich weiterhin Grenzen - etwa die
+[61]: Es gibt selbstverständlich weiterhin Grenzen - etwa die
     Leitlinien des Unternehmens, die Prinzipien des Architekten oder den
     technischen Voraussetzungen der Laufzeitumgebung des Servers
 
-[^62]: REST: Representational State Transfer: Ressourcenadressierung
+[62]: REST: Representational State Transfer: Ressourcenadressierung
     über HTTP
 
-[^63]: Beschränken sich im Wesentlichen auf die HTTP-Methoden POST, PUT,
+[63]: Beschränken sich im Wesentlichen auf die HTTP-Methoden POST, PUT,
     DELETE und GET und entsprechen damit den aus der Datenzugriffschicht
     geläufigen CRUD-Operationen
 
-[^64]: Cloud-Dienste sind keine Voraussetzung für nachfolgend
+[64]: Cloud-Dienste sind keine Voraussetzung für nachfolgend
     beschriebene technische Möglichkeiten. Virtualisierung kann mit
     höherem Aufwand auch lokal im Unternehmen betrieben werden.
 
-[^65]: Nach gab es zum Beginn 2015 etwa 12.000 *OpenAPIs*. Namhafte
+[65]: Nach gab es zum Beginn 2015 etwa 12.000 *OpenAPIs*. Namhafte
     Unternehmen wie Salesforce (50%), Expedia (90%) oder eBay (60%)
     generieren den Großteil ihres Umsatzes über APIs
 
-[^66]: Die Querschnittsfunktion eines Unternehmens für die Disziplin der
+[66]: Die Querschnittsfunktion eines Unternehmens für die Disziplin der
     flächendeckenden technischen Integration wird häufig als
     *Integration Competency Center* (ICC) bezeichnet. Sie ist meist
     interdisziplinär aufgestellt.
 
-[^67]: Zu ihnen gehören die Aufstellung von Infrastrukturen
+[67]: Zu ihnen gehören die Aufstellung von Infrastrukturen
     (*Infrastructe Architecture*), den Prozessschemata (*Process
     Architecture*) und einer Anwendungsarchitektur (*Application
     architecture*).
 
-[^68]: Dazu gehören z.B. eine Vertretung der Anwendungsentwickler, der
+[68]: Dazu gehören z.B. eine Vertretung der Anwendungsentwickler, der
     *Cloud*-Spezialisten, dem ICC, der Daten- und B2B-Integration und
     der *Enterprise Architect*.
 
-[^69]: Das meint insbesondere Gesetze, Unternehmensrichtlinien,
+[69]: Das meint insbesondere Gesetze, Unternehmensrichtlinien,
     Datenschutzrichtlinien etc.
 
-[^70]: Gartner nennt mit Adobe ein Referenzprodukt, die über solch ein
+[70]: Gartner nennt mit Adobe ein Referenzprodukt, die über solch ein
     Portal bereits 400 Ad-hoc- und *Citizen-Integrators* angebunden
     haben.
 
-[^71]: Siehe größere Darstellung in Anhang 1: Prozessmodell für
+[71]: Siehe größere Darstellung in Anhang 1: Prozessmodell für
     Leistungsbuchung (mit und ohne Entitäten)
 
-[^72]: Aufgrund der Anforderung einer Schnittstelle dem CDM zu
+[72]: Aufgrund der Anforderung einer Schnittstelle dem CDM zu
     entsprechen, sollte der ESB keine aufwendigen *Mappings* durchführen
     müssen. Die Realität sieht jedoch etwas anders aus. Da eine
     Schnittstelle bei Überarbeitung des CDM aufwendiger anzupassen ist,
     übernimmt der ESB die Übersetzung abweichender
     Schnittstellenschemata zum CDM und zurück.
 
-[^73]: Möglich ist hier die Auslagerung in einer Datenbank oder einem
+[73]: Möglich ist hier die Auslagerung in einer Datenbank oder einem
     Dateisystem
 
-[^74]: TIBCO-*Hosts* einer Domäne kommunizieren über JMS mithilfe des
+[74]: TIBCO-*Hosts* einer Domäne kommunizieren über JMS mithilfe des
     EMS oder alternativ über das TIBCO-eigene *Rendevouz*-Protokoll.
 
-[^75]: Dazu zählt etwa die Zahl aktiver BW-Prozessinstanzen oder die
+[75]: Dazu zählt etwa die Zahl aktiver BW-Prozessinstanzen oder die
     Systemauslastung
 
-[^76]: Ein erneutes *Deployment* zählt bereits als Berührung eines
+[76]: Ein erneutes *Deployment* zählt bereits als Berührung eines
     unbeteiligten Artefakts
 
-[^77]: Ab TIBCO BW Version 6 heißt der TIBCO Designer nun
+[77]: Ab TIBCO BW Version 6 heißt der TIBCO Designer nun
     BusinessStudio. Er basiert auf Eclipse.
 
-[^78]: Die Variabilität unterliegt Annahmen, die i.d.R. durch ein XSD
+[78]: Die Variabilität unterliegt Annahmen, die i.d.R. durch ein XSD
     beschrieben sind
 
-[^79]: Dieses Verhalten – verwaltet durch den EMS – ist optional. Es
+[79]: Dieses Verhalten – verwaltet durch den EMS – ist optional. Es
     gibt weitere Interaktionsmuster mit *Queues*, die bspw. die
     sofortige Bestätigung mit Erhalt der Nachricht im *Client* auslösen.
 
-[^80]: Idempotenz besagt, dass ein Prozess nach jeder Ausführung in
+[80]: Idempotenz besagt, dass ein Prozess nach jeder Ausführung in
     beliebiger Häufigkeit stets dasselbe Ergebnis hat. Ein SQL-*Insert*,
     das nicht zurückgerollt wird, hält dieser Anforderung nicht stand.
     Denn es entsteht mit jeder neuen Ausführung des Prozesses ein neuer
     Datensatz
 
-[^81]: In dieser Aussage sind Werkzeuge zur *Log*-Analyse wie bspw.
+[81]: In dieser Aussage sind Werkzeuge zur *Log*-Analyse wie bspw.
     *Kibana* nicht berücksichtigt.
 
-[^82]: Eine Auswertung des *Data-Journals* in *MicroStrategy* befindet
+[82]: Eine Auswertung des *Data-Journals* in *MicroStrategy* befindet
     sich im Anhang auf Seite XI
 
-[^83]: Etwa versorgt die FApp *Data-Journal* jede FApp mit dem
+[83]: Etwa versorgt die FApp *Data-Journal* jede FApp mit dem
     *doJournal*-Prozess zum Schreiben von Ereignisnachrichten in die
     Journal-*Queue*.
 
-[^84]: Bezogen auf die TIBCO-Domäne
+[84]: Bezogen auf die TIBCO-Domäne
 
-[^85]: Ein vorgeschalteter, sitzungsbasierter *Loadbalancer* ließe auch
+[85]: Ein vorgeschalteter, sitzungsbasierter *Loadbalancer* ließe auch
     zustandsbehaftete Module zu.
 
-[^86]: Checkpoints sind in BW Prozessen platzierbare Persistenzpunkte,
+[86]: Checkpoints sind in BW Prozessen platzierbare Persistenzpunkte,
     von denen aus ein Prozess nach einem Abbruch o.ä. unter Beibehaltung
     des letzten Zustands wieder fortgesetzt werden kann.
 
-[^87]: *Broker* und FApps bestimmen über Nachrichtenausgaben an eine
+[87]: *Broker* und FApps bestimmen über Nachrichtenausgaben an eine
     CDM-*Queue* selbst den nächsten Prozessschritt.
 
-[^88]: Das WSO2-Konzept schreibt die Aufgabe der *Mediation* den
+[88]: Das WSO2-Konzept schreibt die Aufgabe der *Mediation* den
     *Brokern* zu, meint hier aber die Vermittlung zwischen einem System
     und dem *Process Coordinator*. Da der *Mediator* aber ESB-intern
     zwischen FApps und *Brokern* vermittelt, ist seine Bezeichnung
     ebenso gerechtfertigt. Durch diese verschiedenen Betrachtungsweisen
     lässt sich der Namenskonflikt auflösen.
 
-[^89]: Das gilt es gemäß Anforderung zu verhindern. Ablauflogik soll
+[89]: Das gilt es gemäß Anforderung zu verhindern. Ablauflogik soll
     nicht zentral liegen.
 
-[^90]: Dies sorgt dafür, dass der generische *Worker* beim Lesen von
+[90]: Dies sorgt dafür, dass der generische *Worker* beim Lesen von
     Nachrichten aus einer der generischen *Queues* das richtige
     Selektionskriterium anwendet und nur die Nachrichten eingehen, die
     für die FApp / den *Broker* bestimmt sind.
 
-[^91]: Etwa mit einer Benachrichtigung, einem *Rollback* oder einer
+[91]: Etwa mit einer Benachrichtigung, einem *Rollback* oder einer
     Kompensation am externen System.
 
-[^92]: Die FApp, die diesen Prozess über RESTful HTTP o.ä, aufrufen
+[92]: Die FApp, die diesen Prozess über RESTful HTTP o.ä, aufrufen
     möchte, verwendet einen *Service-Proxy*-Prozess, der durch Import
     einer DTL (abgeleitet aus dem *Broker*-Projekt) erhalten wird.
 
-[^93]: Das Einplanen von *Lambda-Tasks* bildet hier eine Ausnahme.
+[93]: Das Einplanen von *Lambda-Tasks* bildet hier eine Ausnahme.
     Erklärungen folgen später.
 
-[^94]: Obgleich AWS keine Gewährleistung für FIFO abgibt.
+[94]: Obgleich AWS keine Gewährleistung für FIFO abgibt.
 
-[^95]: *Workflows* können zum Zweck der Nachverfolgung bis zu 90 Tage
+[95]: *Workflows* können zum Zweck der Nachverfolgung bis zu 90 Tage
     von SWF gehalten werden. Diese Konfiguration wirkt sich auf die
     Kostenberechnung des *Service* aus.
 
-[^96]: S3 ist der *Simple Storage Service* in AWS und bietet eine
+[96]: S3 ist der *Simple Storage Service* in AWS und bietet eine
     Dokumentenablage an.
 
-[^97]: Eine zweite Ausführung mit derselben *Workflow*-ID wird von SWF
+[97]: Eine zweite Ausführung mit derselben *Workflow*-ID wird von SWF
     abgelehnt, solange die erste noch läuft. Damit kann eine
     Vertragsübermittlung eine andere mit gleicher ID nicht überholen.
 
-[^98]: Ein gefilterter Vertrag beendet die *Workflow*-Ausführung, da er
+[98]: Ein gefilterter Vertrag beendet die *Workflow*-Ausführung, da er
     nicht weitergeleitet wird.
 
-[^99]: Vereinfachen Arbeit mit JSON-Formaten. Vgl.
+[99]: Vereinfachen Arbeit mit JSON-Formaten. Vgl.
     https://github.com/FasterXML/jackson
 
-[^100]: Aktuell ist eine 24-stündige Ausführung eines Workflows mit
+[100]: Aktuell ist eine 24-stündige Ausführung eines Workflows mit
     0,00000565\$ bepreist. Spürbare Auswirkungen ergeben sich nur bei
     sehr großen Aufkommen langlebiger Workflows.
