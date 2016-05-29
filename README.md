@@ -73,209 +73,201 @@ Tabellenverzeichnis
 Abkürzungsverzeichnis 
 Vorwort
 
-1 Einleitung
-1.1 Herausforderungen
-1.2 Zielformulierung
-1.3 Inhalte und Struktur der Arbeit
+1. Einleitung
+  1. Herausforderungen
+  2. Zielformulierung
+  3. Inhalte und Struktur der Arbeit
 
-2 Klassische Integration in heterogenen IT-Landschaften
-2.1 Applikation im Fokus – die klassische EAI
-2.1.1 Messaging-Systeme
-2.1.2 Message Oriented Middleware
-2.1.3 Message Bus
-2.2 Service im Fokus – Entwicklung der SOA
-2.2.1 Konzept
-2.2.2 Enterprise Service Bus
-2.2.3 Resümee
-2.3 Geschäftsprozesse im Fokus – Ausbildung des BPM
-2.3.1 Business Process Management System
-2.3.2 Abgrenzung zur SOA und dem ESB
-2.3.3 Resümee
-2.4 Workflow im Fokus – Automatisierung in der Workflow-Engine
-2.4.1 Abgrenzung Workflow-Management und BPM
-2.4.2 Referenz-Modell
-2.5 Totale (Referenz-)Architektur
+2. Klassische Integration in heterogenen IT-Landschaften
+  1. Applikation im Fokus – die klassische EAI
+    1. Messaging-Systeme
+    2. Message Oriented Middleware
+    3. Message Bus
+  2. Service im Fokus – Entwicklung der SOA
+    1. Konzept
+    2. Enterprise Service Bus
+    3. Resümee
+  3. Geschäftsprozesse im Fokus – Ausbildung des BPM
+    1. Business Process Management System
+    2. Abgrenzung zur SOA und dem ESB
+    3. Resümee
+  4. Workflow im Fokus – Automatisierung in der Workflow-Engine
+    1. Abgrenzung Workflow-Management und BPM
+    2. Referenz-Modell
+  5. Totale (Referenz-)Architektur
 
-3 Integration für moderne IT-Landschaften
-3.1 Agilisierung – die Softwarebranche denkt um
-3.2 Modularisierung – Microservices übernehmen agile Wertekonzepte
-3.2.1 Domain Driven Design
-3.2.2 Operative Freiräume
-3.2.3 Herausforderungen für Integration
-3.3 Pragmatisierung –APIs, Messaging und sonst nichts?
-3.3.1 Synchrone Kommunikation über RESTful Webservices
-3.3.2 Asynchrone Kommunikation über Messages
-3.3.3 Herausforderungen für Integrationslösungen
-3.4 Virtualisierung – die Abkehr der Applikation vom System
-3.4.1 Cloud-Services
-3.4.2 Software-Container
-3.4.3 Herausforderungen für Integrationslösungen
-3.5 Mobilisierung – Vielfältigkeit zu integrierender Endgeräte
+3. Integration für moderne IT-Landschaften
+  1. Agilisierung – die Softwarebranche denkt um
+  2. Modularisierung – Microservices übernehmen agile Wertekonzepte
+    1. Domain Driven Design
+    2. Operative Freiräume
+    3. Herausforderungen für Integration
+  3. Pragmatisierung –APIs, Messaging und sonst nichts?
+    1. Synchrone Kommunikation über RESTful Webservices
+    2. Asynchrone Kommunikation über Messages
+    3. Herausforderungen für Integrationslösungen
+  4. Virtualisierung – die Abkehr der Applikation vom System
+    1. Cloud-Services
+    2. Software-Container
+    3. Herausforderungen für Integrationslösungen
+  5. Mobilisierung – Vielfältigkeit zu integrierender Endgeräte
 
-4 Integration im Wandel
-4.1 Sinneswandel
-4.2 Strukturwandel
-4.3 Bewältigungsstrategien
-4.3.1 Der bimodale Ansatz für Integration
-4.3.2 Self-Service Integration
-4.3.3 Hybrid Integration Platform
-4.3.4 Self-Service Integration Portal
-5 Integrationslösung mit TIBCO BusinessWorks
-5.1 Anforderungsanalyse und Entwurf
-5.1.1 Geschäftsprozess am Beispiel
-5.1.2 Datenflüsse am Beispiel
-5.1.3 Systemarchitektur am Beispiel
-5.2 Grundlagen zur TIBCO Produktpalette
-5.2.1 Message Service
-5.2.2 ActiveMatrix
-5.2.3 Administratives Werkzeug
-5.3 Ausbaustufe 1: Modularisierung nach Fachlichkeit
-5.3.1 Modularisierungskriterium
-5.3.2 Komponentendesign
-5.3.3 Sicherstellung einer garantierten Nachrichtenverarbeitung
-5.3.4 Data-Journal
-5.3.5 Zusammenfassung
-5.4 Ausbaustufe 2: Modularisierung nach Funktion
-5.4.1 Geteilte Ressourcen
-5.4.2 Broker
-5.4.3 Bessere Skalierung
-5.4.4 Zusammenfassung
-5.5 Ausbaustufe 3: Generischer Mittler
-5.5.1 Prozesskoordination
-5.5.2 Referenzmodell zum Datenfluss
-5.5.3 Inhalts- und kontextgesteuerte Nachrichtenvermittlung
-5.5.4 Metadatenspeicher und Data-Journal
-5.5.5 Der Mediator
-5.5.6 Zusammenfassung
-5.6 Bewertung und Ausblick 
+4. Integration im Wandel
+  1. Sinneswandel
+  2. Strukturwandel
+  3. Bewältigungsstrategien
+    1. Der bimodale Ansatz für Integration
+    2. Self-Service Integration
+    3. Hybrid Integration Platform
+    4. Self-Service Integration Portal
 
-6 Workflow-Engine mit Amazon SWF
-6.1 Beschreibung und Einsatz
-6.2 Komponenten
-6.3 Funktionsweise
-6.4 Flow Framework
-6.4.1 Workflow Worker
-6.4.2 Activity Worker
-6.4.3 Workflow Starter
+5. Integrationslösung mit TIBCO BusinessWorks
+  1. Anforderungsanalyse und Entwurf
+    1. Geschäftsprozess am Beispiel
+    2. Datenflüsse am Beispiel
+    3. Systemarchitektur am Beispiel
+  2. Grundlagen zur TIBCO Produktpalette
+    1. Message Service
+    2. ActiveMatrix
+    3. Administratives Werkzeug
+  3. Ausbaustufe 1: Modularisierung nach Fachlichkeit
+    1. Modularisierungskriterium
+    2. Komponentendesign
+    3. Sicherstellung einer garantierten Nachrichtenverarbeitung
+    4. Data-Journal
+    5. Zusammenfassung
+  4. Ausbaustufe 2: Modularisierung nach Funktion
+    1. Geteilte Ressourcen
+    2. Broker
+    3. Bessere Skalierung
+    4. Zusammenfassung
+  5. Ausbaustufe 3: Generischer Mittler
+    1. Prozesskoordination
+    2. Referenzmodell zum Datenfluss
+    3. Inhalts- und kontextgesteuerte Nachrichtenvermittlung
+    4. Metadatenspeicher und Data-Journal
+    5. Der Mediator
+    6. Zusammenfassung
+  6. Bewertung und Ausblick 
 
-7 Hybride Integrationsplattform mit BusinessWorks und SWF
-7.1 Der Anwendungsfall
-7.2 Migration der Mediator-Komponenten
-7.2.1 Inbound Transport Worker der Broker
-7.2.2 Journale
-7.2.3 Service Proxy Worker der Broker
-7.2.4 Outbound Transport Worker der Broker
-7.2.5 Service Worker der FApps
-7.2.6 Mediator
-7.2.7 Zusammenfassung 
-7.3 Integration im AWS-Ökosystem
-7.4 Vendor Lock-in
-7.5 Self-Service-Integration
-7.6 SWF und Microservices
+6. Workflow-Engine mit Amazon SWF
+  1. Beschreibung und Einsatz
+  2. Komponenten
+  3. Funktionsweise
+  4. Flow Framework
+    1. Workflow Worker
+    2. Activity Worker
+    3. Workflow Starter
 
-8 Schluss
-8.1 Bewertung und Benchmark
-8.2 Fazit und Ausblick
+7. Hybride Integrationsplattform mit BusinessWorks und SWF
+  1. Der Anwendungsfall
+  2. Migration der Mediator-Komponenten
+    1. Inbound Transport Worker der Broker
+    2. Journale
+    3. Service Proxy Worker der Broker
+    4. Outbound Transport Worker der Broker
+    5. Service Worker der FApps
+    6. Mediator
+    7. Zusammenfassung 
+  3. Integration im AWS-Ökosystem
+  4. Vendor Lock-in
+  5. Self-Service-Integration
+  6. SWF und Microservices
 
-Anhang 1: Prozessmodell für Leistungsbuchung (mit und ohne Entitäten)
-Anhang 2: *Process Pattern Mapping* für Leistungsbuchung
-Anhang 3: Data-Journal in Microstrategy 
-Anhang 4: FApp-Architektur für Weiterleitung offene Posten 
-Anhang 5: Referenz-Architektur für entitätsbezogenen Datenaustausch \#1
-Anhang 6: Referenz-Architektur für entitätsbezogenen Datenaustausch \#2
-Anhang 7: Generischer Nachrichtenfluss im ESB mit Beispiel 
-Anhang 8: Generischer Nachrichtenfluss über ESB-Komponenten 
-Anhang 9: Generisches Design eines ESB Brokers mit Beispiel 
-Anhang 10: Generisches Design einer ESB FApp mit Beispiel 
-Anhang 11: Nachrichten mit anreicherndem Kontext im gen. Datenfluss 
-Anhang 12: Referenz-Architektur mit generischem Mediator 
-Anhang 13: AWS Flow Framework Implementierung mit SWF Interaktion 
-Anhang 14: Vertragsweiterleitung bei Leistungsbuchung durch ESB 
-Anhang 15: Hybride Integrationslösung für Vertragsweiterleitung mit SWF
-Anhang 16: SWF im AWS-Ökosystem 
-Anhang 17: SWF im AWS-Ökosystem (Exit-Strategie) 
-Anhang 18: SWF-Workflow Leistungsverbuchung mit Delegierung 
-Anhang 19: CD-ROM 
-Literaturverzeichnis 
+8. Schluss
+  1. Bewertung und Benchmark
+  2. Fazit und Ausblick
+
+9. Anhänge
+* Anhang 1: Prozessmodell für Leistungsbuchung (mit und ohne Entitäten)
+* Anhang 2: *Process Pattern Mapping* für Leistungsbuchung
+* Anhang 3: Data-Journal in Microstrategy 
+* Anhang 4: FApp-Architektur für Weiterleitung offene Posten 
+* Anhang 5: Referenz-Architektur für entitätsbezogenen Datenaustausch \#1
+* Anhang 6: Referenz-Architektur für entitätsbezogenen Datenaustausch \#2
+* Anhang 7: Generischer Nachrichtenfluss im ESB mit Beispiel 
+* Anhang 8: Generischer Nachrichtenfluss über ESB-Komponenten 
+* Anhang 9: Generisches Design eines ESB Brokers mit Beispiel 
+* Anhang 10: Generisches Design einer ESB FApp mit Beispiel 
+* Anhang 11: Nachrichten mit anreicherndem Kontext im gen. Datenfluss 
+* Anhang 12: Referenz-Architektur mit generischem Mediator 
+* Anhang 13: AWS Flow Framework Implementierung mit SWF Interaktion 
+* Anhang 14: Vertragsweiterleitung bei Leistungsbuchung durch ESB 
+* Anhang 15: Hybride Integrationslösung für Vertragsweiterleitung mit SWF
+* Anhang 16: SWF im AWS-Ökosystem 
+* Anhang 17: SWF im AWS-Ökosystem (Exit-Strategie) 
+* Anhang 18: SWF-Workflow Leistungsverbuchung mit Delegierung 
+* Anhang 19: CD-ROM 
+* Literaturverzeichnis 
 
 Abbildungsverzeichnis
 =====================
 
-Abbildung 1: Enterprise Integration Patterns (Hohpe, et al., 2003, 2015)
-Abbildung 2: Chaining Transformations (Hohpe, et al., 2004 p. 89)
-Abbildung 3: Workflow vs. Prozess (Müller, 2005 p. 216 (Kindle))
-Abbildung 4: Workflow Reference-Model nach (Hollingsworth, 1995 p. 20)
-Abbildung 5: Lifecycle eines Workflows (Hollingsworth, 1995 p. 23)
-Abbildung 6: Lifecycle einer Aktivität im Workflow (Hollingsworth, 1995
-p. 24)
-Abbildung 7: Kombinierte Integrationsstrategien nach (Brown, 2009 p. 35)
-Abbildung 8: Total Architecture nach (Brown, 2011 p. 10)
-Abbildung 9: Geschichtete Architektur nach (Evans, 2003 p. 68)
-Abbildung 10: Bounded Contexts (Martincevic, 2015)
-Abbildung 11: Microservice-Stacks nach Bounded Contexts (Allen, 2013)
-Abbildung 12: Context Map im DDD (Martincevic, 2015)
-Abbildung 13: „Managed“-Grad eines Cloudportfolios (Thomas, 2015)
-Abbildung 14: Building Blocks zur Beherrschung der Datenflüsse in einem
-Digital Business (Axway, 2015)
-Abbildung 15: Geschäftsprozess mit Mahnverfahren nach Leistungsbuchung
-Abbildung 16: Auszug Business Object Model - Entitätsebene
-Abbildung 17: Geschäftsprozess ergänzt um entitätsbezogene Datenflüsse
-Abbildung 18: Systemarchitektur mit entitätsbezogenen Datenflüssen
-Abbildung 19: Grafisches Mapping im TIBCO BusinessStudio
-Abbildung 20: Prozess zum Empfang offener Posten aus ERP im Designer
-Abbildung 21: Prozess zum Versand offener Posten nach Salesforce im
-Designer
-Abbildung 22: Ausbaustufe 1 – entitätsbezogene FApp-Modularisierung
-Abbildung 23: Skalierung mit BW6 AppSpaces (TIBCO, 2014 p. 8)
-Abbildung 24: Ausbaustufe 2 – entitäts- und systembezogene
-Modularisierung
-Abbildung 25: Elementare Bausteine einer SOA nach (WSO2, 2011 p. 9)
-Abbildung 26: Lebenszyklus der Metaobjekte im Mediator-Konzept
-Abbildung 27: Erweitertes Datenbankschema für Metadatenspeicher im ESB
-Abbildung 28: Content-based Matching zwischen Transporten und
-Transaktionen
-Abbildung 29: Ausbaustufe 3 – Mediator als generischen Mittler
-Abbildung 30: Komponenten in SWF und Interaktion mit
-Workflow-Teilnehmern
-Abbildung 31: Salesforce-Broker übernimmt Rolle eines Activity Worker
-Abbildung 32: SWF Workflow-Choreografie über Domain/Team-Grenzen
-Abbildung 33: SWF-Workflow-Verschachtelung über Verantwortungsbereiche
-Abbildung 34: Prozessmodell für Leistungsbuchung mit Entitäten
-Abbildung 35: Prozessmodell für Leistungsbuchung ohne Entitäten
-Abbildung 36: *Process-Pattern-Matching* für Leistungsbuchung
-Abbildung 37: Data-Journal Durchsatz-Statistik in Microstrategy
-Abbildung 38: FApp-Architektur für Weiterleitung offener Posten
-Abbildung 39: Referenzarchitektur für entitätsbezogenen Datenaustausch
-\#1
-Abbildung 40: Referenz-Architektur für entitätsbezogenen Datenaustausch
-\#2
-Abbildung 41: Generischer Nachrichtenfluss im ESB
-Abbildung 42: Generischer Nachrichtenfluss im ESB am Beispiel
-Abbildung 43: Generischer Datenfluss über ESB-Komponenten
-Abbildung 44: Generisches Design eines ESB-Brokers
-Abbildung 45: Generisches Design eines ESB-Brokers am Beispiel
-Abbildung 46: Generisches Design einer ESB-FApp
-Abbildung 47: Generisches Design einer ESB-FApp am Beispiel
-Abbildung 48: Nachrichten mit anreicherndem Kontext im gen. Datenfluss
-Abbildung 49: Referenz-Architektur mit generischem Mediator
-Abbildung 50: AWS Flow Framework Implementierung mit SWF Interaktion
-Abbildung 51: Vertragsweiterleitung bei Leistungsbuchung durch ESB
-Abbildung 52: Hybride Integrationslösung für Vertragsweiterleitung mit
-SWF
-Abbildung 53: SWF im AWS-Ökosystem
-Abbildung 54: Denkbare Exit-Strategie für SWF und Anrainer-Produkte
-Abbildung 55: SWF-Workflow Leistungsverbuchung mit Delegierung
+* Abbildung 1: Enterprise Integration Patterns (Hohpe, et al., 2003, 2015)
+* Abbildung 2: Chaining Transformations (Hohpe, et al., 2004 p. 89)
+* Abbildung 3: Workflow vs. Prozess (Müller, 2005 p. 216 (Kindle))
+* Abbildung 4: Workflow Reference-Model nach (Hollingsworth, 1995 p. 20)
+* Abbildung 5: Lifecycle eines Workflows (Hollingsworth, 1995 p. 23)
+* Abbildung 6: Lifecycle einer Aktivität im Workflow (Hollingsworth, 1995 p. 24)
+* Abbildung 7: Kombinierte Integrationsstrategien nach (Brown, 2009 p. 35)
+* Abbildung 8: Total Architecture nach (Brown, 2011 p. 10)
+* Abbildung 9: Geschichtete Architektur nach (Evans, 2003 p. 68)
+* Abbildung 10: Bounded Contexts (Martincevic, 2015)
+* Abbildung 11: Microservice-Stacks nach Bounded Contexts (Allen, 2013)
+* Abbildung 12: Context Map im DDD (Martincevic, 2015)
+* Abbildung 13: „Managed“-Grad eines Cloudportfolios (Thomas, 2015)
+* Abbildung 14: Building Blocks zur Beherrschung der Datenflüsse in einem Digital Business (Axway, 2015)
+* Abbildung 15: Geschäftsprozess mit Mahnverfahren nach Leistungsbuchung
+* Abbildung 16: Auszug Business Object Model - Entitätsebene
+* Abbildung 17: Geschäftsprozess ergänzt um entitätsbezogene Datenflüsse
+* Abbildung 18: Systemarchitektur mit entitätsbezogenen Datenflüssen
+* Abbildung 19: Grafisches Mapping im TIBCO BusinessStudio
+* Abbildung 20: Prozess zum Empfang offener Posten aus ERP im Designer
+* Abbildung 21: Prozess zum Versand offener Posten nach Salesforce im Designer
+* Abbildung 22: Ausbaustufe 1 – entitätsbezogene FApp-Modularisierung
+* Abbildung 23: Skalierung mit BW6 AppSpaces (TIBCO, 2014 p. 8)
+* Abbildung 24: Ausbaustufe 2 – entitäts- und systembezogene Modularisierung
+* Abbildung 25: Elementare Bausteine einer SOA nach (WSO2, 2011 p. 9)
+* Abbildung 26: Lebenszyklus der Metaobjekte im Mediator-Konzept
+* Abbildung 27: Erweitertes Datenbankschema für Metadatenspeicher im ESB
+* Abbildung 28: Content-based Matching zwischen Transporten und Transaktionen
+* Abbildung 29: Ausbaustufe 3 – Mediator als generischen Mittler
+* Abbildung 30: Komponenten in SWF und Interaktion mit Workflow-Teilnehmern
+* Abbildung 31: Salesforce-Broker übernimmt Rolle eines Activity Worker
+* Abbildung 32: SWF Workflow-Choreografie über Domain/Team-Grenzen
+* Abbildung 33: SWF-Workflow-Verschachtelung über Verantwortungsbereiche
+* Abbildung 34: Prozessmodell für Leistungsbuchung mit Entitäten
+* Abbildung 35: Prozessmodell für Leistungsbuchung ohne Entitäten
+* Abbildung 36: *Process-Pattern-Matching* für Leistungsbuchung
+* Abbildung 37: Data-Journal Durchsatz-Statistik in Microstrategy
+* Abbildung 38: FApp-Architektur für Weiterleitung offener Posten
+* Abbildung 39: Referenzarchitektur für entitätsbezogenen Datenaustausch 1
+* Abbildung 40: Referenzarchitektur für entitätsbezogenen Datenaustausch 2
+* Abbildung 41: Generischer Nachrichtenfluss im ESB
+* Abbildung 42: Generischer Nachrichtenfluss im ESB am Beispiel
+* Abbildung 43: Generischer Datenfluss über ESB-Komponenten
+* Abbildung 44: Generisches Design eines ESB-Brokers
+* Abbildung 45: Generisches Design eines ESB-Brokers am Beispiel
+* Abbildung 46: Generisches Design einer ESB-FApp
+* Abbildung 47: Generisches Design einer ESB-FApp am Beispiel
+* Abbildung 48: Nachrichten mit anreicherndem Kontext im gen. Datenfluss
+* Abbildung 49: Referenz-Architektur mit generischem Mediator
+* Abbildung 50: AWS Flow Framework Implementierung mit SWF Interaktion
+* Abbildung 51: Vertragsweiterleitung bei Leistungsbuchung durch ESB
+* Abbildung 52: Hybride Integrationslösung für Vertragsweiterleitung mit SWF
+* Abbildung 53: SWF im AWS-Ökosystem
+* Abbildung 54: Denkbare Exit-Strategie für SWF und Anrainer-Produkte
+* Abbildung 55: SWF-Workflow Leistungsverbuchung mit Delegierung
 
 Tabellenverzeichnis
 ===================
 
-Tabelle 1: Gegenüberstellung ESB-Mediator-Konzept und SWF
+* Tabelle 1: Gegenüberstellung ESB-Mediator-Konzept und SWF
 
 Abkürzungsverzeichnis
 =====================
 
   **AMX**     :   Active Matrix
-  ----------- --- ---------------------------------------------------------------------
   **API**     :   Application Programming Interface
   **AWS**     :   Amazon Webservices
   **B2B**     :   Business to Business
@@ -388,19 +380,12 @@ Environments*)
 Im Jahr 2015 konnte ich auf vielen Veranstaltungen mit Fachexperten über
 das entstandene Konzept sprechen und es verbessern.
 
--   TIBCO *Customer Workshop*, 11.06., Berlin, Immobilien Scout GmbH
-
--   TIBCO *Integration Customer Day*, 16.06., Frankfurt a.M., TIBCO
-
--   *Berlin Expert Days* (BED-Con), 17.-18 Sep., Berlin, Berlin Expert
-    > Days e.V.
-
--   *AWSome Day*, 15.Sep., Berlin, Amazon Webservices
-
--   AWS *Architecting Bootcamp*, 04.11., Berlin, Amazon Webservices
-
--   Gartner *Application Architecture, Development and
-    > Integration* (AADI) *Summit*, 01.12.-03.12., Las Vegas, Gartner
+* TIBCO *Customer Workshop*, 11.06., Berlin, Immobilien Scout GmbH
+* TIBCO *Integration Customer Day*, 16.06., Frankfurt a.M., TIBCO
+* Berlin Expert Days (BED-Con), 17.-18 Sep., Berlin, Berlin Expert Days e.V.
+* AWSome Day, 15.Sep., Berlin, Amazon Webservices
+* AWS Architecting Bootcamp, 04.11., Berlin, Amazon Webservices
+* Gartner *Application Architecture, Development and Integration* (AADI) *Summit*, 01.12.-03.12., Las Vegas, Gartner
 
 Ich möchte mich bei allen Gesprächspartner sowie bei meinem Team für
 kontinuierliches Feedback und das entgegengebrachte Engagement bedanken.
